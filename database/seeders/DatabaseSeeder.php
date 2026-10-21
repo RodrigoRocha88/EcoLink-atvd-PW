@@ -15,11 +15,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $users = [
+            ['name' => 'Test User', 'email' => 'test@example.com'],
+            ['name' => 'Ana Souza', 'email' => 'ana.souza@ecolink.test'],
+            ['name' => 'Bruno Lima', 'email' => 'bruno.lima@ecolink.test'],
+            ['name' => 'Carla Mendes', 'email' => 'carla.mendes@ecolink.test'],
+            ['name' => 'Daniel Rocha', 'email' => 'daniel.rocha@ecolink.test'],
+            ['name' => 'Eduarda Alves', 'email' => 'eduarda.alves@ecolink.test'],
+            ['name' => 'Felipe Costa', 'email' => 'felipe.costa@ecolink.test'],
+            ['name' => 'Gabriela Martins', 'email' => 'gabriela.martins@ecolink.test'],
+            ['name' => 'Henrique Oliveira', 'email' => 'henrique.oliveira@ecolink.test'],
+            ['name' => 'Isabela Ferreira', 'email' => 'isabela.ferreira@ecolink.test'],
+        ];
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        foreach ($users as $user) {
+            User::firstOrCreate(
+                ['email' => $user['email']],
+                User::factory()->raw($user),
+            );
+        }
     }
 }

@@ -33,6 +33,7 @@
             <div class="hidden items-center gap-8 text-sm font-semibold text-white/80 md:flex">
                 <a class="hover:text-white" href="#como-funciona">Como funciona</a>
                 <a class="hover:text-white" href="#beneficios">Benefícios</a>
+                <a class="hover:text-white" href="#tecnologias">Tecnologias</a>
                 <a class="hover:text-white" href="#impacto">Impacto</a>
             </div>
             <div class="flex items-center gap-3">
@@ -109,6 +110,42 @@
                     <div class="mt-8 rounded-3xl bg-white p-5 sm:p-7"><span class="text-3xl">📚</span><h3 class="mt-5 font-extrabold">Mais orientação</h3><p class="mt-2 text-sm leading-6 text-slate-600">Conteúdo para apoiar a separação correta dos resíduos.</p></div>
                     <div class="rounded-3xl bg-white p-5 sm:p-7"><span class="text-3xl">🤝</span><h3 class="mt-5 font-extrabold">Mais conexão</h3><p class="mt-2 text-sm leading-6 text-slate-600">Aproximação entre condomínios e recicladores.</p></div>
                     <div class="mt-8 rounded-3xl bg-white p-5 sm:p-7"><span class="text-3xl">📈</span><h3 class="mt-5 font-extrabold">Mais visibilidade</h3><p class="mt-2 text-sm leading-6 text-slate-600">Indicadores para acompanhar a evolução das ações.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tecnologias" class="px-5 py-20 lg:px-8 lg:py-28">
+            <div class="mx-auto max-w-7xl">
+                <div class="mx-auto max-w-2xl text-center">
+                    <p class="text-xs font-extrabold uppercase tracking-[.2em] text-emerald-700">Solução final do TCC</p>
+                    <h2 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">Tecnologias utilizadas</h2>
+                    <p class="mt-5 leading-7 text-slate-600">Quatro partes conectadas para levar o EcoLink aos usuários e organizar as informações da plataforma.</p>
+                </div>
+                <div class="mt-14 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+                    <article class="lift rounded-3xl border border-emerald-950/5 bg-white p-7">
+                        <span class="flex h-12 w-12 items-center justify-center rounded-2xl text-2xl" style="background:#edf7df">📱</span>
+                        <h3 class="mt-6 text-xl font-extrabold">Aplicativo mobile</h3>
+                        <p class="mt-2 font-bold text-emerald-800">React Native + TypeScript + Expo</p>
+                        <p class="mt-3 leading-7 text-slate-600">Aplicativo para os usuários acessarem as funcionalidades do EcoLink pelo celular.</p>
+                    </article>
+                    <article class="lift rounded-3xl border border-emerald-950/5 bg-white p-7">
+                        <span class="flex h-12 w-12 items-center justify-center rounded-2xl text-2xl" style="background:#edf7df">💻</span>
+                        <h3 class="mt-6 text-xl font-extrabold">Site</h3>
+                        <p class="mt-2 font-bold text-emerald-800">Next.js + TypeScript</p>
+                        <p class="mt-3 leading-7 text-slate-600">Interface web para acessar a plataforma.</p>
+                    </article>
+                    <article class="lift rounded-3xl border border-emerald-950/5 bg-white p-7">
+                        <span class="flex h-12 w-12 items-center justify-center rounded-2xl text-2xl" style="background:#edf7df">🔗</span>
+                        <h3 class="mt-6 text-xl font-extrabold">API</h3>
+                        <p class="mt-2 font-bold text-emerald-800">Route Handlers do Next.js</p>
+                        <p class="mt-3 leading-7 text-slate-600">Responsável por processar requisições e permitir a comunicação entre as partes do sistema.</p>
+                    </article>
+                    <article class="lift rounded-3xl border border-emerald-950/5 bg-white p-7">
+                        <span class="flex h-12 w-12 items-center justify-center rounded-2xl text-2xl" style="background:#edf7df">🗄️</span>
+                        <h3 class="mt-6 text-xl font-extrabold">Banco de dados</h3>
+                        <p class="mt-2 font-bold text-emerald-800">MySQL</p>
+                        <p class="mt-3 leading-7 text-slate-600">Responsável por armazenar e organizar os dados da plataforma.</p>
+                    </article>
                 </div>
             </div>
         </section>
