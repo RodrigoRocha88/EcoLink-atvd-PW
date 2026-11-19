@@ -121,10 +121,10 @@ Acesse no navegador:
 ![Front-end CRUD Edição e Exclusão](docs/prints/05-frontend-crud-editar-excluir.png)
 
 ### 6. Back-end CRUD e Middleware
-![Back-end CRUD e Middleware](docs/prints/06-backend-crud-middleware.png)
+![Back-end CRUD e Middleware](docs/prints/06-backend-crud-middleware-fallback.png)
 
 ### 7. Rota Fallback (`Route::fallback` — Página 404 personalizada)
-![Rota Fallback 404](docs/prints/07-rota-fallback-404.png)
+![Rota Fallback 404](docs/prints/07-rota-fallback.png)
 
 ---
 
