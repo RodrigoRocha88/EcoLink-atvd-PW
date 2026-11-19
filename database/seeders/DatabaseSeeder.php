@@ -3,36 +3,42 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        $users = [
-            ['name' => 'Test User', 'email' => 'test@example.com'],
-            ['name' => 'Ana Souza', 'email' => 'ana.souza@ecolink.test'],
-            ['name' => 'Bruno Lima', 'email' => 'bruno.lima@ecolink.test'],
-            ['name' => 'Carla Mendes', 'email' => 'carla.mendes@ecolink.test'],
-            ['name' => 'Daniel Rocha', 'email' => 'daniel.rocha@ecolink.test'],
-            ['name' => 'Eduarda Alves', 'email' => 'eduarda.alves@ecolink.test'],
-            ['name' => 'Felipe Costa', 'email' => 'felipe.costa@ecolink.test'],
-            ['name' => 'Gabriela Martins', 'email' => 'gabriela.martins@ecolink.test'],
-            ['name' => 'Henrique Oliveira', 'email' => 'henrique.oliveira@ecolink.test'],
-            ['name' => 'Isabela Ferreira', 'email' => 'isabela.ferreira@ecolink.test'],
-        ];
+        // 1. Administrador geral
+        User::firstOrCreate(
+            ['email' => 'admin@ecolink.com'],
+            [
+                'name' => 'Administrador EcoLink',
+                'password' => Hash::make('12345678'),
+            ]
+        );
 
-        foreach ($users as $user) {
-            User::firstOrCreate(
-                ['email' => $user['email']],
-                User::factory()->raw($user),
-            );
-        }
+        // 2. Perfil Síndico (acesso completo ao CRUD de coletas)
+        User::firstOrCreate(
+            ['email' => 'sindico@ecolink.com'],
+            [
+                'name' => 'Síndico Parque Verde',
+                'password' => Hash::make('12345678'),
+            ]
+        );
+
+        // 3. Perfil Visitante (bloqueado pelo Middleware ao tentar editar/excluir)
+        User::firstOrCreate(
+            ['email' => 'visitante@ecolink.com'],
+            [
+                'name' => 'Visitante Demonstração',
+                'password' => Hash::make('12345678'),
+            ]
+        );
+
+        $this->call([
+            ColetaSeeder::class,
+        ]);
     }
 }

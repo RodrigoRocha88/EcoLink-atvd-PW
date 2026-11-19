@@ -1,206 +1,176 @@
-# EcoLink
+# EcoLink — Gestão Inteligente de Resíduos em Condomínios
 
-Projeto acadêmico de Trabalho de Conclusão de Curso sobre gestão de resíduos em condomínios. O EcoLink propõe aproximar moradores, condomínios e profissionais da reciclagem para tornar o descarte e a organização das coletas mais acessíveis e colaborativos.
+Plataforma web desenvolvida em **Laravel 13** e **Laravel Breeze** para a gestão inteligente de resíduos sólidos em ambientes condominiais[cite: 5, 9]. O projeto integra **moradores**, **síndicos** e **catadores (profissionais da reciclagem)** em um único ecossistema, promovendo a triagem correta na fonte, o agendamento de coletas e a inclusão produtiva na economia circular[cite: 3, 6].
 
-> Esta entrega é uma demonstração acadêmica em Laravel Breeze, sem CRUD de resíduos ou coletas. Os indicadores e registros apresentados no Dashboard são ilustrativos.
+---
 
 ## Objetivo do TCC
 
-Propor uma plataforma que ajude a organizar a gestão de resíduos em ambientes residenciais, facilite a comunicação entre condomínios e profissionais da reciclagem e incentive práticas de descarte consciente.
+Inspirado nas diretrizes da **Política Nacional de Resíduos Sólidos (Lei nº 12.305/10)**, o EcoLink busca solucionar a falta de padronização e de comunicação no descarte cotidiano em condomínios residenciais por meio de[cite: 3, 4]:
 
-## Proposta e funcionalidades
+- **Educação Ambiental (Módulo do Morador):** orientações sobre *como descartar*, *por que reciclar* e *triagem de produtos* (plásticos, papéis, metais, vidros e eletrônicos)[cite: 6].
+- **Gestão Administrativa (Módulo do Síndico):** cadastro, acompanhamento e controle completo (CRUD) das solicitações de coleta seletiva, volumes em kg e pontos de descarte[cite: 6].
+- **Previsibilidade Logística (Módulo do Catador):** visualização das coletas disponíveis e seus status (`Aguardando`, `Planejada` e `Concluída`), otimizando rotas e reduzindo deslocamentos improdutivos[cite: 3, 6].
 
-A solução EcoLink busca:
+---
 
-- apoiar a orientação sobre separação e descarte de resíduos;
-- aproximar condomínios e profissionais da reciclagem;
-- facilitar a organização e o planejamento de coletas;
-- apresentar informações que incentivem hábitos sustentáveis.
+## Requisitos Implementados na Plataforma Web
 
-Nesta versão acadêmica, a Landing Page apresenta a proposta e o Dashboard exibe uma prévia demonstrativa. Os números e registros do Dashboard são fixos e fictícios; não representam dados reais de coletas nem são carregados de tabelas do domínio.
+- **Autenticação completa com Laravel Breeze:** rotas e telas de login, cadastro de usuários, recuperação de senha e painel administrativo (`Dashboard`), estilizadas com a identidade visual do EcoLink[cite: 5].
+- **CRUD Completo de Coletas (`ColetaController`):** criação, listagem, edição e exclusão de registros de materiais recicláveis.
+- **Exibição Dinâmica na Home e no Dashboard:** tanto a página inicial pública (`/`) quanto o painel logado (`/dashboard`) consultam o banco de dados em tempo real e exibem os indicadores totais e todos os registros cadastrados.
+- **Middleware Personalizado (`VerificaAcessoEcoLink`):** registrado com o alias `ecolink.acesso` em `bootstrap/app.php`, protege o acesso ao Dashboard e às rotas do CRUD, bloqueando alterações por perfis visitantes e registrando o cabeçalho `X-EcoLink-Middleware`.
+- **Rota Fallback (`Route::fallback`):** captura qualquer URL inexistente no sistema e exibe uma página `404` personalizada (`resources/views/errors/fallback.blade.php`) com retorno seguro para a plataforma.
+- **Migrations e Seeders (`ColetaSeeder`):** estruturação da tabela `coletas` e população automática do banco com **10 registros reais** de materiais recicláveis, além de usuários de acesso.
 
-## Tecnologias da versão acadêmica
+---
 
-Esta é a versão implementada para a atividade escolar:
+## Arquitetura e Tecnologias
 
-- **Back-end:** PHP e Laravel 13.
-- **Autenticação:** Laravel Breeze 2.
-- **Front-end:** Blade, Tailwind CSS e Alpine.js.
-- **Build de assets:** Vite.
-- **Banco de dados padrão:** SQLite.
-- **Banco alternativo configurado:** MySQL.
+### Stack desta Aplicação Web
+- **Back-end:** PHP 8.4+ e Laravel 13 (padrão MVC).
+- **Autenticação e Segurança:** Laravel Breeze + Middleware `VerificaAcessoEcoLink`.
+- **Front-end:** Blade Templates, Tailwind CSS e Alpine.js.
+- **Empacotamento de Assets:** Vite.
+- **Banco de Dados:** SQLite (padrão local) / compatível com MySQL.
 
-O Dashboard é protegido pelas middlewares `auth` e `verified`. A entrega não implementa CRUD de coletas ou resíduos.
+### Arquitetura Híbrida do Ecossistema EcoLink (TCC)
 
-## Tecnologias planejadas para a solução final
+| Camada | Tecnologias | Papel no Sistema |
+| :--- | :--- | :--- |
+| **Web (Gestão)** | Laravel, Laravel Breeze, Tailwind CSS | Painel administrativo seguro para síndicos gerenciarem solicitações de coleta[cite: 6]. |
+| **Mobile** | React Native, TypeScript | Aplicativo para moradores e catadores acessarem guias de triagem e rotas de coleta[cite: 6]. |
+| **Backend (API)** | Node.js, TypeScript | API responsável pelo processamento assíncrono e integração entre as interfaces[cite: 5, 6]. |
+| **Banco de Dados** | MySQL / SQLite | Armazenamento estruturado de usuários, solicitações de coleta e histórico[cite: 6]. |
 
-As tecnologias a seguir são o planejamento da solução final do TCC. Elas **não estão implementadas nesta versão acadêmica**, que utiliza Laravel Breeze:
-
-| Parte da solução | Tecnologia planejada |
-| --- | --- |
-| Aplicativo mobile | React Native + TypeScript + Expo |
-| Site | Next.js + TypeScript |
-| API | Route Handlers do Next.js |
-| Banco de dados | MySQL |
+---
 
 ## Pré-requisitos
 
-- PHP 8.3 ou superior, com extensões necessárias pelo Laravel e PDO SQLite habilitado para usar o banco padrão.
-- Composer.
-- Node.js compatível com o Vite do projeto: `^20.19.0` ou `>=22.12.0`.
-- npm.
-- Git.
+- **PHP 8.4 ou superior** (com extensões `pdo_sqlite`, `pdo_mysql`, `mbstring`, `openssl`, `curl`, `fileinfo` e `zip` habiladas).
+- **Composer** (gerenciador de dependências PHP).
+- **Node.js (v20.19+ ou v22+)** e **npm**.
+- **Git**.
 
-Para usar MySQL em vez de SQLite, também é necessário ter um servidor MySQL e a extensão PDO MySQL habilitada no PHP.
+---
 
-## Instalação e execução
+## Instalação e Execução Local
 
-Os comandos abaixo usam Windows PowerShell. Execute-os na pasta em que deseja salvar o repositório.
+Execute os comandos abaixo no terminal (PowerShell) dentro da pasta onde deseja clonar o projeto:
 
 ### 1. Clonar o repositório
-
 ```powershell
-git clone https://github.com/RodrigoRocha88/EcoLink-atvd-PW.git
-Set-Location EcoLink-atvd-PW
+git clone [https://github.com/RodrigoRocha88/EcoLink-atvd-PW.git](https://github.com/RodrigoRocha88/EcoLink-atvd-PW.git)
+cd EcoLink-atvd-PW
 ```
 
-### 2. Instalar dependências
-
+### 2. Instalar dependências do PHP e do Front-end
 ```powershell
 composer install
 npm install
 ```
 
-O `composer install` instala as dependências PHP conforme o `composer.lock`; `npm install` instala as dependências front-end conforme o `package-lock.json`.
-
-### 3. Configurar o ambiente local
-
-Copie o arquivo de exemplo somente se ainda não existir um `.env`:
-
+### 3. Configurar o arquivo `.env` e a chave da aplicação
 ```powershell
-if (-not (Test-Path .env)) {
-    Copy-Item .env.example .env
-}
-```
-
-Gere uma chave própria para a aplicação:
-
-```powershell
+copy .env.example .env
 php artisan key:generate
 ```
 
-Não compartilhe o arquivo `.env` nem publique seus valores. O `.env` contém configurações locais e pode conter informações sensíveis.
-
-### 4. Configurar SQLite
-
-SQLite é o banco padrão do projeto. Se o arquivo ainda não existir, crie-o:
-
+### 4. Executar as Migrations e o Seeder (10 registros)
 ```powershell
-if (-not (Test-Path database\database.sqlite)) {
-    New-Item -ItemType File -Path database\database.sqlite
-}
+php artisan migrate:fresh --seed
 ```
+*(Se o Laravel perguntar se deseja criar o arquivo `database/database.sqlite`, confirme com `yes` ou aperte **Enter**).*
 
-Com `DB_CONNECTION=sqlite` e `DB_DATABASE` não definido, a aplicação usa `database/database.sqlite`. Confirme que esses valores estão corretos no seu `.env`.
+> **Credenciais de acesso criadas pelo Seeder:**
+> - **E-mail:** `admin@ecolink.com`
+> - **Senha:** `12345678`
 
-#### Usar MySQL em vez de SQLite
-
-Se for usar MySQL, configure no seu `.env` a conexão, host, porta, nome do banco, usuário e senha correspondentes ao seu ambiente. Não copie credenciais deste README nem as publique no GitHub. Depois, prossiga com as migrations.
-
-## Migrações e dados de demonstração
-
-Aplique as migrations:
-
-```powershell
-php artisan migrate
-```
-
-O projeto inclui migrations para usuários, redefinição de senha, sessões, cache e filas. Não há migrations de domínio para coletas ou condomínios nesta versão.
-
-Execute o Seeder:
-
-```powershell
-php artisan db:seed
-```
-
-O `DatabaseSeeder` cria ou encontra 10 usuários de demonstração na tabela `users`, usando e-mails estáveis e `firstOrCreate` para evitar duplicações quando ele é executado novamente. A factory existente fornece os demais atributos requeridos pelo modelo.
-
-Para conferir os registros no SQLite com uma consulta somente de leitura, abra `database/database.sqlite` em uma ferramenta como DBeaver e execute:
-
-```sql
-SELECT COUNT(*)
-FROM users
-WHERE email IN (
-    'test@example.com',
-    'ana.souza@ecolink.test',
-    'bruno.lima@ecolink.test',
-    'carla.mendes@ecolink.test',
-    'daniel.rocha@ecolink.test',
-    'eduarda.alves@ecolink.test',
-    'felipe.costa@ecolink.test',
-    'gabriela.martins@ecolink.test',
-    'henrique.oliveira@ecolink.test',
-    'isabela.ferreira@ecolink.test'
-);
-```
-
-O resultado esperado é `10`. Essa consulta verifica os usuários identificados pelo Seeder; ela não altera o banco.
-
-## Compilar os assets e iniciar a aplicação
-
-Compile os assets:
-
+### 5. Compilar o Front-end e iniciar o servidor
 ```powershell
 npm run build
+php artisan serve
 ```
 
-Inicie o ambiente local:
+Acesse no navegador:
+- **Página Inicial (Home):** http://127.0.0.1:8000
+- **Login:** http://127.0.0.1:8000/login
+- **Cadastro:** http://127.0.0.1:8000/register
+- **Recuperação de Senha:** http://127.0.0.1:8000/forgot-password
+- **Dashboard:** http://127.0.0.1:8000/dashboard
+- **Gerenciamento CRUD de Coletas:** http://127.0.0.1:8000/coletas
+- **Teste da Rota Fallback (404):** http://127.0.0.1:8000/pagina-inexistente
 
-```powershell
-composer run dev
+---
+
+## Demonstração do Projeto (Prints)
+
+### 1. Site funcionando em `localhost` (Home com dados do TCC)
+![Site funcionando em localhost](docs/prints/01-localhost-home.png)
+
+### 2. Autenticação Laravel Breeze e Dashboard
+![Dashboard autenticado](docs/prints/02-localhost-dashboard.png)
+
+### 3. Banco de Dados (`Migrations` e `Seeders` com 10 registros)
+![Migrations e Seeders](docs/prints/03-banco-migrations-seeders.png)
+
+### 4. Front-end CRUD — Cadastro e Listagem
+![Front-end CRUD Cadastro](docs/prints/04-frontend-crud-criar.png)
+
+### 5. Front-end CRUD — Edição e Exclusão
+![Front-end CRUD Edição e Exclusão](docs/prints/05-frontend-crud-editar-excluir.png)
+
+### 6. Back-end CRUD e Middleware
+![Back-end CRUD e Middleware](docs/prints/06-backend-crud-middleware.png)
+
+### 7. Rota Fallback (`Route::fallback` — Página 404 personalizada)
+![Rota Fallback 404](docs/prints/07-rota-fallback-404.png)
+
+---
+
+## Organização do Projeto
+
+```text
+EcoLink-atvd-PW/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   └── ColetaController.php          # Operações CRUD (index, create, store, edit, update, destroy)
+│   │   └── Middleware/
+│   │       └── VerificaAcessoEcoLink.php     # Middleware personalizado de controle de acesso
+│   └── Models/
+│       ├── Coleta.php                        # Model Eloquent das coletas seletivas
+│       └── User.php                          # Model de usuários (Laravel Breeze)
+├── bootstrap/
+│   └── app.php                               # Registro do alias 'ecolink.acesso' do Middleware
+├── database/
+│   ├── migrations/
+│   │   └── *_create_coletas_table.php        # Estrutura da tabela de coletas
+│   └── seeders/
+│       ├── ColetaSeeder.php                  # Popula 10 registros de coletas no banco
+│       └── DatabaseSeeder.php                # Cria usuário administrador e chama ColetaSeeder
+├── docs/
+│   └── prints/                               # Capturas de tela da demonstração
+├── resources/
+│   └── views/
+│       ├── auth/                             # Telas de login, registro e senha estilizadas
+│       ├── coletas/                          # Views do CRUD (index, create, edit)
+│       ├── errors/
+│       │   └── fallback.blade.php            # Tela 404 personalizada da rota Fallback
+│       ├── dashboard.blade.php               # Painel com indicadores e registros do TCC
+│       └── welcome.blade.php                 # Página inicial com dados reais do banco
+└── routes/
+    └── web.php                               # Rotas públicas, protegidas por middleware e Route::fallback
 ```
 
-Esse script inicia o servidor Laravel, o processo de fila e o Vite. Acesse a aplicação em:
+---
 
-- Landing Page: http://127.0.0.1:8000
-- Login: http://127.0.0.1:8000/login
-- Cadastro: http://127.0.0.1:8000/register
-- Recuperação de senha: http://127.0.0.1:8000/forgot-password
-- Dashboard: http://127.0.0.1:8000/dashboard
+## Integrantes
 
-O Dashboard requer autenticação. O `.env.example` configura o mailer como `log`; o envio de mensagens não está configurado para um serviço de e-mail real.
+- **Pedro Tersi Gomes de Souza** — Desenvolvimento do sistema e prototipação[cite: 3, 9]
+- **Renan Pereira Rezaghi** — Desenvolvimento do sistema[cite: 3, 9]
+- **Rodrigo Rocha Silva** — Desenvolvimento do sistema[cite: 3, 9]
 
-Para executar a suíte automatizada:
+## Repositório Oficial
 
-```powershell
-composer test
-```
-
-## Organização do projeto
-
-- `app/Models/` — modelos Eloquent; atualmente inclui o modelo de usuário.
-- `app/Http/Controllers/` — controladores da aplicação e de autenticação.
-- `database/migrations/` — estrutura das tabelas de autenticação, cache e filas.
-- `database/factories/` — factories para dados de teste e demonstração.
-- `database/seeders/` — Seeder principal dos usuários de demonstração.
-- `resources/views/welcome.blade.php` — Landing Page.
-- `resources/views/dashboard.blade.php` — Dashboard demonstrativo.
-- `resources/views/auth/` — telas do Laravel Breeze.
-- `resources/css/` e `resources/js/` — assets de front-end.
-- `routes/web.php` e `routes/auth.php` — rotas web e de autenticação.
-
-## Integrantes e atribuições
-
-As atribuições abaixo foram informadas pelo grupo:
-
-- **Pedro Tersi:** Desenvolvimento do site, criação do protótipo no Figma e gravação do vídeo.
-- **Renan Rezaghi:** Desenvolvimento do site.
-- **Rodrigo Rocha:** Desenvolvimento do site.
-
-## Links do projeto e da entrega
-
-- **Repositório GitHub:** https://github.com/RodrigoRocha88/EcoLink-atvd-PW
-- **Protótipo Figma:** [Inserir link do Figma]
-- **Vídeo de demonstração no YouTube:** [Inserir link do vídeo]
-
-Os links do Figma e do vídeo devem ser substituídos pelos links publicados antes da entrega da atividade.
+- **GitHub:** https://github.com/RodrigoRocha88/EcoLink-atvd-PW[cite: 9]
