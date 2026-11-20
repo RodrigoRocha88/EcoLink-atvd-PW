@@ -167,10 +167,11 @@ EcoLink-atvd-PW/
 
 ## Integrantes
 
-- **Pedro Tersi Gomes de Souza** — Desenvolvimento do sistema e prototipação[cite: 3, 9]
+- **Pedro Tersi Gomes de Souza** — Desenvolvimento do sistema e prototipação
 - **Renan Pereira Rezaghi** — Desenvolvimento do sistema[cite: 3, 9]
 - **Rodrigo Rocha Silva** — Desenvolvimento do sistema[cite: 3, 9]
 
 ## Repositório Oficial
 
 - **GitHub:** https://github.com/RodrigoRocha88/EcoLink-atvd-PW[cite: 9]
+- **YouTube:** https://youtu.be/xOQfVP8srIM
