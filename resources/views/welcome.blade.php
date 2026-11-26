@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description" content="EcoLink: conectando representantes de condomínios e catadores para organizar a coleta seletiva.">
 
     <title>EcoLink — Conectando pessoas por um mundo mais sustentável</title>
@@ -12,10 +13,12 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
     @verbatim
+
         :root {
             --eco-green: #006047;
             --eco-green-dark: #003f30;
@@ -24,7 +27,6 @@
             --eco-text: #18372e;
             --eco-muted: #66766e;
             --eco-background: #f8faf6;
-            --eco-white: #ffffff;
             --eco-border: #e5ece3;
             --eco-shadow: 0 18px 55px rgba(0, 65, 47, .09);
         }
@@ -97,7 +99,7 @@
             line-height: 1.8;
         }
 
-        /* CABEÇALHO */
+        /* NAVBAR */
 
         .eco-header {
             position: sticky;
@@ -126,7 +128,7 @@
             width: 190px;
             height: auto;
             object-fit: contain;
-            border-radius: 7px;
+            background: transparent;
         }
 
         .eco-brand-fallback {
@@ -409,7 +411,7 @@
             font-size: .77rem;
         }
 
-        /* SOBRE E DESAFIO */
+        /* SOBRE */
 
         .eco-about-grid {
             display: grid;
@@ -477,7 +479,7 @@
             font-weight: 900;
         }
 
-        /* DESAFIO */
+        /* PROBLEMA */
 
         .eco-problem {
             background: #eff5ec;
@@ -531,7 +533,6 @@
         }
 
         .eco-step {
-            position: relative;
             min-height: 245px;
             padding: 27px 23px;
             border: 1px solid var(--eco-border);
@@ -613,7 +614,7 @@
             line-height: 1.7;
         }
 
-        /* ESPAÇOS RESERVADOS PARA AS CAPTURAS REAIS */
+        /* ESPAÇOS PARA AS CAPTURAS DO SISTEMA */
 
         .eco-media-placeholder {
             min-height: 330px;
@@ -791,29 +792,30 @@
         }
 
         .eco-person-photo {
-            min-height: 230px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative;
+            min-height: 260px;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
             background:
                 radial-gradient(circle at 50% 40%, rgba(123,200,45,.19), transparent 55%),
                 #e8f1e4;
             color: var(--eco-green);
         }
 
+        .eco-person-photo img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+        }
+
         .eco-person-photo span {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 9px;
             color: #668070;
             font-size: .8rem;
             font-weight: 700;
-        }
-
-        .eco-person-photo b {
-            font-size: 2.5rem;
-            font-weight: 400;
         }
 
         .eco-person-info {
@@ -1062,7 +1064,7 @@
             }
 
             .eco-person-photo {
-                min-height: 250px;
+                min-height: 280px;
             }
 
             .eco-footer-content {
@@ -1114,6 +1116,7 @@
                 animation-duration: .01ms !important;
             }
         }
+
     @endverbatim
     </style>
 </head>
@@ -1125,12 +1128,14 @@
         <div class="eco-container eco-nav">
 
             <a href="#top" class="eco-brand" aria-label="EcoLink - Página inicial">
+
                 <img
-                    src="{{ asset('images/ecolink-logo.png') }}"
-                    alt="EcoLink - Conectando pessoas por um mundo mais sustentável"
+                    src="{{ asset('images/ecolink-logo-transparente.png') }}"
+                    alt="EcoLink"
                     class="eco-logo"
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"
                 >
+
                 <span class="eco-brand-fallback">EcoLink</span>
             </a>
 
@@ -1142,7 +1147,9 @@
                 <a href="#equipe">Equipe</a>
             </nav>
 
-            <a href="#sobre" class="eco-nav-button">Conheça o EcoLink</a>
+            <a href="#sobre" class="eco-nav-button">
+                Conheça o EcoLink
+            </a>
 
             <button
                 class="eco-menu-button"
@@ -1154,9 +1161,15 @@
             >
                 ☰
             </button>
+
         </div>
 
-        <nav class="eco-mobile-menu" id="eco-mobile-menu" aria-label="Navegação mobile" hidden>
+        <nav
+            class="eco-mobile-menu"
+            id="eco-mobile-menu"
+            aria-label="Navegação mobile"
+            hidden
+        >
             <a href="#sobre">O projeto</a>
             <a href="#desafio">O desafio</a>
             <a href="#funcionamento">Como funciona</a>
@@ -1179,13 +1192,15 @@
                     </div>
 
                     <h1>
-                        Conectando pessoas por um mundo <strong>mais sustentável.</strong>
+                        Conectando pessoas por um mundo
+                        <strong>mais sustentável.</strong>
                     </h1>
 
                     <p class="eco-hero-text">
-                        O EcoLink é um sistema desenvolvido para organizar as solicitações
-                        de coleta seletiva em condomínios e aproximar seus representantes
-                        dos catadores de materiais recicláveis.
+                        O EcoLink é um sistema desenvolvido para organizar
+                        as solicitações de coleta seletiva em condomínios
+                        e aproximar seus representantes dos catadores
+                        de materiais recicláveis.
                     </p>
 
                     <div class="eco-hero-actions">
@@ -1199,17 +1214,19 @@
                     </div>
 
                     <p class="eco-hero-note">
-                        <span>EcoLink</span> — Conectando pessoas, facilitando conexões
-                        e organizando a coleta seletiva.
+                        <span>EcoLink</span> — Conectando pessoas,
+                        facilitando conexões e organizando a coleta seletiva.
                     </p>
                 </div>
 
                 <div class="eco-hero-visual">
                     <div class="eco-visual-card">
+
                         <div class="eco-visual-top">
                             <div>
                                 <small>Conheça o processo</small>
                             </div>
+
                             <div class="eco-visual-icon">♻</div>
                         </div>
 
@@ -1219,7 +1236,9 @@
                             <span class="eco-flow-number">01</span>
                             <div>
                                 <strong>Solicitação registrada</strong>
-                                <small>O condomínio informa os materiais disponíveis.</small>
+                                <small>
+                                    O condomínio informa os materiais disponíveis.
+                                </small>
                             </div>
                         </div>
 
@@ -1227,7 +1246,9 @@
                             <span class="eco-flow-number">02</span>
                             <div>
                                 <strong>Coleta aceita</strong>
-                                <small>O catador consulta e aceita a solicitação.</small>
+                                <small>
+                                    O catador consulta e aceita a solicitação.
+                                </small>
                             </div>
                         </div>
 
@@ -1235,9 +1256,12 @@
                             <span class="eco-flow-number">03</span>
                             <div>
                                 <strong>Atendimento confirmado</strong>
-                                <small>As duas partes confirmam a realização da coleta.</small>
+                                <small>
+                                    As duas partes confirmam a realização da coleta.
+                                </small>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -1256,28 +1280,40 @@
                     </h2>
 
                     <p class="eco-section-description">
-                        O EcoLink surgiu com o propósito de facilitar a organização
-                        da coleta seletiva em condomínios por meio da tecnologia.
-                        A proposta é aproximar representantes de condomínios e
-                        catadores em um ambiente digital, reunindo informações
+                        O EcoLink surgiu com o propósito de facilitar
+                        a organização da coleta seletiva em condomínios
+                        por meio da tecnologia. A proposta é aproximar
+                        representantes de condomínios e catadores em
+                        um ambiente digital, reunindo informações
                         importantes para o acompanhamento das solicitações.
                     </p>
 
                     <div class="eco-about-points">
+
                         <div class="eco-about-point">
                             <span class="eco-check">✓</span>
-                            <span>Organização das informações sobre materiais e quantidades disponíveis.</span>
+                            <span>
+                                Organização das informações sobre materiais
+                                e quantidades disponíveis.
+                            </span>
                         </div>
 
                         <div class="eco-about-point">
                             <span class="eco-check">✓</span>
-                            <span>Comunicação entre representantes de condomínios e catadores.</span>
+                            <span>
+                                Comunicação entre representantes de
+                                condomínios e catadores.
+                            </span>
                         </div>
 
                         <div class="eco-about-point">
                             <span class="eco-check">✓</span>
-                            <span>Acompanhamento das etapas de atendimento das solicitações.</span>
+                            <span>
+                                Acompanhamento das etapas de atendimento
+                                das solicitações.
+                            </span>
                         </div>
+
                     </div>
                 </div>
 
@@ -1287,9 +1323,10 @@
                     <h3>Nosso propósito</h3>
 
                     <p>
-                        Utilizar a tecnologia como ferramenta de apoio à organização
-                        da coleta seletiva, tornando as informações mais acessíveis
-                        e aproximando os participantes envolvidos nesse processo.
+                        Utilizar a tecnologia como ferramenta de apoio
+                        à organização da coleta seletiva, tornando as
+                        informações mais acessíveis e aproximando os
+                        participantes envolvidos nesse processo.
                     </p>
                 </div>
 
@@ -1304,15 +1341,17 @@
                     <span class="eco-eyebrow">O problema</span>
 
                     <h2 class="eco-section-title">
-                        Organizar a coleta seletiva também é um desafio de comunicação.
+                        Organizar a coleta seletiva também é um desafio
+                        de comunicação.
                     </h2>
 
                     <p class="eco-section-description">
-                        A destinação adequada dos materiais recicláveis depende
-                        da participação de diferentes agentes. Nos condomínios,
-                        a organização das informações e o contato entre quem
-                        disponibiliza os materiais e quem realiza a retirada
-                        são partes importantes desse processo.
+                        A destinação adequada dos materiais recicláveis
+                        depende da participação de diferentes agentes.
+                        Nos condomínios, a organização das informações
+                        e o contato entre quem disponibiliza os materiais
+                        e quem realiza a retirada são partes importantes
+                        desse processo.
                     </p>
                 </div>
 
@@ -1323,8 +1362,8 @@
                         <span>↔</span>
                         <div>
                             <strong>Comunicação descentralizada</strong><br>
-                            Dificuldade para reunir as informações necessárias
-                            sobre as coletas.
+                            Dificuldade para reunir as informações
+                            necessárias sobre as coletas.
                         </div>
                     </div>
 
@@ -1332,8 +1371,9 @@
                         <span>📦</span>
                         <div>
                             <strong>Informações sobre os materiais</strong><br>
-                            Necessidade de identificar os materiais disponíveis,
-                            suas quantidades e as condições para retirada.
+                            Necessidade de identificar os materiais
+                            disponíveis, suas quantidades e as condições
+                            para retirada.
                         </div>
                     </div>
 
@@ -1341,12 +1381,12 @@
                         <span>📍</span>
                         <div>
                             <strong>Organização das retiradas</strong><br>
-                            Importância de informar os locais e as instruções
-                            para o atendimento das solicitações.
+                            Importância de informar os locais e as
+                            instruções para o atendimento das solicitações.
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </section>
 
@@ -1361,8 +1401,9 @@
                 </h2>
 
                 <p class="eco-section-description">
-                    O EcoLink estabelece um fluxo de solicitação e acompanhamento
-                    da coleta, conectando o representante do condomínio ao catador.
+                    O EcoLink estabelece um fluxo de solicitação
+                    e acompanhamento da coleta, conectando o
+                    representante do condomínio ao catador.
                 </p>
 
                 <div class="eco-steps">
@@ -1373,8 +1414,9 @@
                         <h3>Criação da solicitação</h3>
 
                         <p>
-                            O representante informa os materiais disponíveis,
-                            as quantidades estimadas e as instruções para a retirada.
+                            O representante informa os materiais
+                            disponíveis, as quantidades estimadas
+                            e as instruções para a retirada.
                         </p>
                     </article>
 
@@ -1384,8 +1426,9 @@
                         <h3>Consulta e aceite</h3>
 
                         <p>
-                            O catador consulta as solicitações disponíveis e
-                            pode aceitar uma coleta para realizar o atendimento.
+                            O catador consulta as solicitações
+                            disponíveis e pode aceitar uma coleta
+                            para realizar o atendimento.
                         </p>
                     </article>
 
@@ -1395,8 +1438,9 @@
                         <h3>Confirmação do catador</h3>
 
                         <p>
-                            Após realizar a retirada dos materiais, o catador
-                            registra no sistema que a coleta foi efetuada.
+                            Após realizar a retirada dos materiais,
+                            o catador registra no sistema que
+                            a coleta foi efetuada.
                         </p>
                     </article>
 
@@ -1407,7 +1451,8 @@
 
                         <p>
                             O representante também confirma a coleta.
-                            O atendimento é concluído após as duas confirmações.
+                            O atendimento é concluído após as
+                            duas confirmações.
                         </p>
                     </article>
 
@@ -1426,22 +1471,25 @@
                 </h2>
 
                 <p class="eco-section-description">
-                    O projeto conta com uma aplicação móvel e uma interface web,
-                    integradas a uma API compartilhada e a um banco de dados.
-                    Cada plataforma atende às necessidades dos participantes
-                    do processo de coleta seletiva.
+                    O projeto conta com uma aplicação móvel e uma
+                    interface web, integradas a uma API compartilhada
+                    e a um banco de dados. Cada plataforma atende às
+                    necessidades dos participantes do processo
+                    de coleta seletiva.
                 </p>
 
                 <div class="eco-platform-grid">
 
+                    <!-- APLICATIVO -->
                     <article class="eco-platform-card">
 
-                        <!-- FUTURA SUBSTITUIÇÃO: CAPTURA REAL DO APLICATIVO -->
                         <div class="eco-media-placeholder">
                             <div class="eco-mobile-frame">
                                 <div class="eco-mobile-screen">
                                     <span>📱</span>
+
                                     <strong>Aplicativo EcoLink</strong>
+
                                     <small>
                                         Espaço reservado para as capturas
                                         reais do aplicativo.
@@ -1451,28 +1499,33 @@
                         </div>
 
                         <div class="eco-platform-content">
-                            <span class="eco-platform-label">Aplicativo móvel</span>
+                            <span class="eco-platform-label">
+                                Aplicativo móvel
+                            </span>
 
                             <h3>EcoLink Mobile</h3>
 
                             <p>
-                                Permite que os participantes acessem as funcionalidades
-                                do sistema pelo celular, incluindo a consulta e o
+                                Permite que os participantes acessem
+                                as funcionalidades do sistema pelo
+                                celular, incluindo a consulta e o
                                 acompanhamento das solicitações de coleta.
                             </p>
 
                             <p class="eco-placeholder-note">
-                                As telas reais do aplicativo serão inseridas nesta seção.
+                                As telas reais do aplicativo serão
+                                inseridas nesta seção.
                             </p>
                         </div>
 
                     </article>
 
+                    <!-- SITE WEB -->
                     <article class="eco-platform-card">
 
-                        <!-- FUTURA SUBSTITUIÇÃO: CAPTURA REAL DO SISTEMA WEB -->
                         <div class="eco-media-placeholder">
                             <div class="eco-web-frame">
+
                                 <div class="eco-browser-bar">
                                     <span class="eco-browser-dot"></span>
                                     <span class="eco-browser-dot"></span>
@@ -1481,28 +1534,34 @@
 
                                 <div class="eco-web-screen">
                                     <span>💻</span>
+
                                     <strong>Sistema Web EcoLink</strong>
+
                                     <small>
                                         Espaço reservado para as capturas
                                         reais da plataforma web.
                                     </small>
                                 </div>
+
                             </div>
                         </div>
 
                         <div class="eco-platform-content">
-                            <span class="eco-platform-label">Plataforma web</span>
+                            <span class="eco-platform-label">
+                                Plataforma web
+                            </span>
 
                             <h3>EcoLink Web</h3>
 
                             <p>
-                                Oferece uma interface para o representante do
-                                condomínio registrar solicitações e acompanhar
-                                o andamento dos atendimentos.
+                                Oferece uma interface para o representante
+                                do condomínio registrar solicitações
+                                e acompanhar o andamento dos atendimentos.
                             </p>
 
                             <p class="eco-placeholder-note">
-                                As telas reais do sistema web serão inseridas nesta seção.
+                                As telas reais do sistema web serão
+                                inseridas nesta seção.
                             </p>
                         </div>
 
@@ -1516,55 +1575,71 @@
         <section class="eco-section" id="tecnologias">
             <div class="eco-container">
 
-                <span class="eco-eyebrow">Desenvolvimento do projeto</span>
+                <span class="eco-eyebrow">
+                    Desenvolvimento do projeto
+                </span>
 
                 <h2 class="eco-section-title">
                     Tecnologia trabalhando em conjunto.
                 </h2>
 
                 <p class="eco-section-description">
-                    A arquitetura do EcoLink reúne diferentes componentes
-                    integrados para disponibilizar as funcionalidades do sistema.
+                    A arquitetura do EcoLink reúne diferentes
+                    componentes integrados para disponibilizar
+                    as funcionalidades do sistema.
                 </p>
 
                 <div class="eco-tech-grid">
 
                     <article class="eco-tech-card">
                         <div class="eco-tech-icon">🌐</div>
+
                         <h3>Aplicação web</h3>
+
                         <strong>Next.js + TypeScript</strong>
+
                         <p>
-                            Interface web para acesso às funcionalidades
-                            do sistema.
+                            Interface web para acesso às
+                            funcionalidades do sistema.
                         </p>
                     </article>
 
                     <article class="eco-tech-card">
                         <div class="eco-tech-icon">📱</div>
+
                         <h3>Aplicativo móvel</h3>
+
                         <strong>React Native + TypeScript</strong>
+
                         <p>
-                            Aplicação desenvolvida para dispositivos móveis.
+                            Aplicação desenvolvida para
+                            dispositivos móveis.
                         </p>
                     </article>
 
                     <article class="eco-tech-card">
                         <div class="eco-tech-icon">🔗</div>
+
                         <h3>Integração</h3>
+
                         <strong>API compartilhada</strong>
+
                         <p>
-                            Centraliza as operações e integra as interfaces
-                            do sistema.
+                            Centraliza as operações e integra
+                            as interfaces do sistema.
                         </p>
                     </article>
 
                     <article class="eco-tech-card">
                         <div class="eco-tech-icon">🗄️</div>
+
                         <h3>Banco de dados</h3>
+
                         <strong>MySQL</strong>
+
                         <p>
-                            Armazena as informações utilizadas pelos
-                            componentes do EcoLink.
+                            Armazena as informações utilizadas
+                            pelos componentes do EcoLink.
                         </p>
                     </article>
 
@@ -1577,69 +1652,102 @@
             <div class="eco-container">
 
                 <div style="text-align: center;">
-                    <span class="eco-eyebrow">Quem está por trás</span>
 
-                    <h2 class="eco-section-title" style="margin-left:auto; margin-right:auto;">
+                    <span class="eco-eyebrow">
+                        Quem está por trás
+                    </span>
+
+                    <h2
+                        class="eco-section-title"
+                        style="margin-left:auto; margin-right:auto;"
+                    >
                         Conheça nossa equipe.
                     </h2>
 
-                    <p class="eco-section-description" style="margin-left:auto; margin-right:auto;">
-                        O EcoLink é resultado de um trabalho de pesquisa,
-                        planejamento e desenvolvimento realizado em equipe.
+                    <p
+                        class="eco-section-description"
+                        style="margin-left:auto; margin-right:auto;"
+                    >
+                        O EcoLink é resultado de um trabalho de
+                        pesquisa, planejamento e desenvolvimento
+                        realizado em equipe.
                     </p>
+
                 </div>
 
                 <div class="eco-team-grid">
 
+                    <!-- PEDRO -->
                     <article class="eco-person-card">
-                        <!-- FUTURA SUBSTITUIÇÃO: FOTO DO INTEGRANTE -->
+
                         <div class="eco-person-photo">
-                            <span>
-                                <b>📷</b>
-                                Foto em breve
-                            </span>
+                            <span>Foto de Pedro</span>
+
+                            <img
+                                src="{{ asset('images/pedro.jpg') }}"
+                                alt="Pedro Tersi Gomes de Souza"
+                                loading="lazy"
+                                onload="this.previousElementSibling.style.display='none';"
+                                onerror="this.style.display='none';"
+                            >
                         </div>
 
                         <div class="eco-person-info">
                             <h3>Pedro Tersi Gomes de Souza</h3>
                             <p>Integrante do projeto</p>
                         </div>
+
                     </article>
 
+                    <!-- RENAN -->
                     <article class="eco-person-card">
-                        <!-- FUTURA SUBSTITUIÇÃO: FOTO DO INTEGRANTE -->
+
                         <div class="eco-person-photo">
-                            <span>
-                                <b>📷</b>
-                                Foto em breve
-                            </span>
+                            <span>Foto de Renan</span>
+
+                            <img
+                                src="{{ asset('images/renan.jpg') }}"
+                                alt="Renan Pereira Rezaghi"
+                                loading="lazy"
+                                onload="this.previousElementSibling.style.display='none';"
+                                onerror="this.style.display='none';"
+                            >
                         </div>
 
                         <div class="eco-person-info">
                             <h3>Renan Pereira Rezaghi</h3>
                             <p>Integrante do projeto</p>
                         </div>
+
                     </article>
 
+                    <!-- RODRIGO -->
                     <article class="eco-person-card">
-                        <!-- FUTURA SUBSTITUIÇÃO: FOTO DO INTEGRANTE -->
+
                         <div class="eco-person-photo">
-                            <span>
-                                <b>📷</b>
-                                Foto em breve
-                            </span>
+                            <span>Foto de Rodrigo</span>
+
+                            <img
+                                src="{{ asset('images/rodrigo.jpg') }}"
+                                alt="Rodrigo Rocha Silva"
+                                loading="lazy"
+                                onload="this.previousElementSibling.style.display='none';"
+                                onerror="this.style.display='none';"
+                            >
                         </div>
 
                         <div class="eco-person-info">
                             <h3>Rodrigo Rocha Silva</h3>
                             <p>Integrante do projeto</p>
                         </div>
+
                     </article>
 
                 </div>
 
                 <p class="eco-advisor">
-                    Orientador do projeto: <strong>Jeferson Roberto de Lima</strong>
+                    Orientador do projeto:
+                    <strong>Jeferson Roberto de Lima</strong>
                 </p>
 
             </div>
@@ -1658,9 +1766,9 @@
                 </h2>
 
                 <p>
-                    Acreditamos que a tecnologia pode aproximar pessoas,
-                    organizar processos e apoiar iniciativas voltadas
-                    à coleta seletiva.
+                    Acreditamos que a tecnologia pode aproximar
+                    pessoas, organizar processos e apoiar iniciativas
+                    voltadas à coleta seletiva.
                 </p>
 
                 <a href="#top" class="eco-button eco-button-primary">
@@ -1668,8 +1776,9 @@
                 </a>
 
                 <p class="eco-disclaimer">
-                    Projeto desenvolvido e verificado funcionalmente com contas de teste.
-                    Avaliações com usuários em situações reais e mensuração de impacto
+                    Projeto desenvolvido e verificado funcionalmente
+                    com contas de teste. Avaliações com usuários em
+                    situações reais e mensuração de impacto
                     socioambiental são etapas futuras.
                 </p>
 
@@ -1698,28 +1807,37 @@
         </div>
     </footer>
 
+    <!-- MENU MOBILE -->
     <script>
         const menuButton = document.getElementById('eco-menu-button');
         const mobileMenu = document.getElementById('eco-mobile-menu');
 
         menuButton.addEventListener('click', function () {
-            const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+            const isExpanded =
+                menuButton.getAttribute('aria-expanded') === 'true';
 
-            menuButton.setAttribute('aria-expanded', String(!isExpanded));
+            menuButton.setAttribute(
+                'aria-expanded',
+                String(!isExpanded)
+            );
+
             menuButton.setAttribute(
                 'aria-label',
                 isExpanded ? 'Abrir menu' : 'Fechar menu'
             );
 
             mobileMenu.hidden = isExpanded;
+
             menuButton.textContent = isExpanded ? '☰' : '✕';
         });
 
         mobileMenu.querySelectorAll('a').forEach(function (link) {
             link.addEventListener('click', function () {
                 mobileMenu.hidden = true;
+
                 menuButton.setAttribute('aria-expanded', 'false');
                 menuButton.setAttribute('aria-label', 'Abrir menu');
+
                 menuButton.textContent = '☰';
             });
         });
