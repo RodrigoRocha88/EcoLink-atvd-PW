@@ -1,351 +1,1729 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="EcoLink: Gestão inteligente de resíduos sólidos em condomínios, conectando moradores, síndicos e catadores.">
-    <title>EcoLink — Gestão Inteligente de Resíduos em Condomínios</title>
+    <meta name="description" content="EcoLink: conectando representantes de condomínios e catadores para organizar a coleta seletiva.">
+
+    <title>EcoLink — Conectando pessoas por um mundo mais sustentável</title>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        * { scroll-behavior: smooth; }
-        body { font-family: 'DM Sans', sans-serif; background-color: #f7f8f1; color: #18342a; }
-        h1, h2, h3, .brand { font-family: 'Manrope', sans-serif; }
-        .lift { transition: transform .25s ease, box-shadow .25s ease; }
-        .lift:hover { transform: translateY(-5px); box-shadow: 0 18px 45px rgba(18, 60, 47, .10); }
+    @verbatim
+        :root {
+            --eco-green: #006047;
+            --eco-green-dark: #003f30;
+            --eco-green-light: #7bc82d;
+            --eco-green-pale: #edf6e8;
+            --eco-text: #18372e;
+            --eco-muted: #66766e;
+            --eco-background: #f8faf6;
+            --eco-white: #ffffff;
+            --eco-border: #e5ece3;
+            --eco-shadow: 0 18px 55px rgba(0, 65, 47, .09);
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--eco-background);
+            color: var(--eco-text);
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .eco-container {
+            width: min(1160px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .eco-section {
+            padding: 100px 0;
+        }
+
+        .eco-eyebrow {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--eco-green);
+            font-size: .76rem;
+            font-weight: 800;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        .eco-section-title {
+            max-width: 720px;
+            margin: 0;
+            color: var(--eco-green-dark);
+            font-size: clamp(2rem, 4vw, 3.15rem);
+            font-weight: 800;
+            line-height: 1.14;
+            letter-spacing: -.045em;
+        }
+
+        .eco-section-description {
+            max-width: 680px;
+            margin: 20px 0 0;
+            color: var(--eco-muted);
+            font-size: 1.04rem;
+            line-height: 1.8;
+        }
+
+        /* CABEÇALHO */
+
+        .eco-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, .96);
+            border-bottom: 1px solid rgba(0, 70, 49, .08);
+            backdrop-filter: blur(16px);
+        }
+
+        .eco-nav {
+            min-height: 86px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .eco-brand {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .eco-logo {
+            width: 190px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 7px;
+        }
+
+        .eco-brand-fallback {
+            display: none;
+            color: var(--eco-green);
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .eco-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .eco-nav-links a {
+            color: #52665c;
+            font-size: .88rem;
+            font-weight: 700;
+            transition: color .2s;
+        }
+
+        .eco-nav-links a:hover {
+            color: var(--eco-green-light);
+        }
+
+        .eco-nav-button {
+            padding: 13px 20px;
+            border-radius: 999px;
+            background: var(--eco-green);
+            color: white;
+            font-size: .87rem;
+            font-weight: 800;
+            transition: .2s;
+        }
+
+        .eco-nav-button:hover {
+            background: var(--eco-green-dark);
+            transform: translateY(-2px);
+        }
+
+        .eco-menu-button {
+            display: none;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--eco-border);
+            border-radius: 12px;
+            background: white;
+            color: var(--eco-green);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .eco-mobile-menu {
+            display: none;
+        }
+
+        /* HERO */
+
+        .eco-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 95px 0 105px;
+            background:
+                radial-gradient(circle at 82% 18%, rgba(139, 208, 69, .22), transparent 29%),
+                linear-gradient(125deg, #003e30 0%, #006047 60%, #168052 100%);
+            color: white;
+        }
+
+        .eco-hero::before {
+            position: absolute;
+            right: -140px;
+            bottom: -260px;
+            width: 550px;
+            height: 550px;
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 50%;
+            content: "";
+        }
+
+        .eco-hero::after {
+            position: absolute;
+            right: -65px;
+            bottom: -180px;
+            width: 400px;
+            height: 400px;
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 50%;
+            content: "";
+        }
+
+        .eco-hero-grid {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            align-items: center;
+            gap: 65px;
+        }
+
+        .eco-hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 9px 15px;
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: 999px;
+            background: rgba(255,255,255,.09);
+            color: white;
+            font-size: .76rem;
+            font-weight: 800;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+        .eco-hero-label span {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--eco-green-light);
+        }
+
+        .eco-hero h1 {
+            max-width: 660px;
+            margin: 27px 0 22px;
+            color: white;
+            font-size: clamp(2.7rem, 5.5vw, 4.7rem);
+            font-weight: 800;
+            line-height: 1.06;
+            letter-spacing: -.055em;
+        }
+
+        .eco-hero h1 strong {
+            color: #a5e65b;
+        }
+
+        .eco-hero-text {
+            max-width: 570px;
+            color: rgba(255,255,255,.83);
+            font-size: 1.09rem;
+            line-height: 1.85;
+        }
+
+        .eco-hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+            margin-top: 32px;
+        }
+
+        .eco-button {
+            display: inline-flex;
+            min-height: 52px;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 23px;
+            border-radius: 999px;
+            font-size: .9rem;
+            font-weight: 800;
+            transition: .2s;
+        }
+
+        .eco-button-primary {
+            background: #a5e65b;
+            color: var(--eco-green-dark);
+        }
+
+        .eco-button-primary:hover {
+            background: #b9f27c;
+            transform: translateY(-3px);
+        }
+
+        .eco-button-outline {
+            border: 1px solid rgba(255,255,255,.38);
+            color: white;
+        }
+
+        .eco-button-outline:hover {
+            background: rgba(255,255,255,.12);
+        }
+
+        .eco-hero-note {
+            margin-top: 32px;
+            color: rgba(255,255,255,.72);
+            font-size: .86rem;
+        }
+
+        .eco-hero-note span {
+            color: #a5e65b;
+            font-weight: 800;
+        }
+
+        .eco-hero-visual {
+            position: relative;
+            display: flex;
+            min-height: 390px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .eco-visual-card {
+            width: min(100%, 440px);
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,.22);
+            border-radius: 28px;
+            background: rgba(255,255,255,.12);
+            box-shadow: 0 30px 80px rgba(0,0,0,.16);
+            backdrop-filter: blur(13px);
+        }
+
+        .eco-visual-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .eco-visual-top small {
+            color: rgba(255,255,255,.7);
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .eco-visual-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            background: #a5e65b;
+            color: var(--eco-green-dark);
+            font-size: 1.5rem;
+        }
+
+        .eco-visual-card h2 {
+            margin: 0 0 24px;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .eco-flow-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 12px;
+            padding: 16px;
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 17px;
+            background: rgba(255,255,255,.09);
+        }
+
+        .eco-flow-number {
+            width: 36px;
+            height: 36px;
+            display: grid;
+            flex-shrink: 0;
+            place-items: center;
+            border-radius: 12px;
+            background: rgba(165,230,91,.18);
+            color: #b9f27c;
+            font-weight: 800;
+        }
+
+        .eco-flow-item strong {
+            display: block;
+            color: white;
+            font-size: .91rem;
+        }
+
+        .eco-flow-item small {
+            display: block;
+            margin-top: 3px;
+            color: rgba(255,255,255,.68);
+            font-size: .77rem;
+        }
+
+        /* SOBRE E DESAFIO */
+
+        .eco-about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .eco-about-highlight {
+            padding: 38px;
+            border: 1px solid var(--eco-border);
+            border-radius: 26px;
+            background: white;
+            box-shadow: var(--eco-shadow);
+        }
+
+        .eco-about-highlight .eco-symbol {
+            width: 56px;
+            height: 56px;
+            display: grid;
+            place-items: center;
+            border-radius: 18px;
+            background: var(--eco-green-pale);
+            color: var(--eco-green);
+            font-size: 1.65rem;
+        }
+
+        .eco-about-highlight h3 {
+            margin: 22px 0 10px;
+            color: var(--eco-green-dark);
+            font-size: 1.4rem;
+        }
+
+        .eco-about-highlight p {
+            margin: 0;
+            color: var(--eco-muted);
+            line-height: 1.8;
+        }
+
+        .eco-about-points {
+            display: grid;
+            gap: 15px;
+            margin-top: 27px;
+        }
+
+        .eco-about-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #53675c;
+            font-size: .95rem;
+            line-height: 1.65;
+        }
+
+        .eco-check {
+            width: 25px;
+            height: 25px;
+            display: grid;
+            flex-shrink: 0;
+            place-items: center;
+            border-radius: 50%;
+            background: #e5f5d9;
+            color: var(--eco-green);
+            font-size: .78rem;
+            font-weight: 900;
+        }
+
+        /* DESAFIO */
+
+        .eco-problem {
+            background: #eff5ec;
+        }
+
+        .eco-problem-grid {
+            display: grid;
+            grid-template-columns: .85fr 1.15fr;
+            align-items: center;
+            gap: 75px;
+        }
+
+        .eco-problem-card {
+            padding: 35px;
+            border-radius: 26px;
+            background: white;
+            box-shadow: var(--eco-shadow);
+        }
+
+        .eco-problem-card h3 {
+            margin: 0 0 20px;
+            color: var(--eco-green-dark);
+            font-size: 1.35rem;
+        }
+
+        .eco-problem-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--eco-border);
+            color: var(--eco-muted);
+            line-height: 1.6;
+        }
+
+        .eco-problem-item:last-child {
+            border-bottom: 0;
+        }
+
+        .eco-problem-item span {
+            font-size: 1.25rem;
+        }
+
+        /* FUNCIONAMENTO */
+
+        .eco-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 19px;
+            margin-top: 48px;
+        }
+
+        .eco-step {
+            position: relative;
+            min-height: 245px;
+            padding: 27px 23px;
+            border: 1px solid var(--eco-border);
+            border-radius: 23px;
+            background: white;
+            transition: .25s;
+        }
+
+        .eco-step:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--eco-shadow);
+        }
+
+        .eco-step-number {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: var(--eco-green-pale);
+            color: var(--eco-green);
+            font-weight: 900;
+        }
+
+        .eco-step h3 {
+            margin: 23px 0 10px;
+            color: var(--eco-green-dark);
+            font-size: 1.07rem;
+        }
+
+        .eco-step p {
+            margin: 0;
+            color: var(--eco-muted);
+            font-size: .9rem;
+            line-height: 1.75;
+        }
+
+        /* PLATAFORMAS */
+
+        .eco-platforms {
+            background: white;
+        }
+
+        .eco-platform-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 27px;
+            margin-top: 48px;
+        }
+
+        .eco-platform-card {
+            overflow: hidden;
+            border: 1px solid var(--eco-border);
+            border-radius: 26px;
+            background: var(--eco-background);
+        }
+
+        .eco-platform-content {
+            padding: 28px;
+        }
+
+        .eco-platform-label {
+            color: var(--eco-green);
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+        }
+
+        .eco-platform-card h3 {
+            margin: 10px 0;
+            color: var(--eco-green-dark);
+            font-size: 1.5rem;
+        }
+
+        .eco-platform-card p {
+            margin: 0;
+            color: var(--eco-muted);
+            line-height: 1.7;
+        }
+
+        /* ESPAÇOS RESERVADOS PARA AS CAPTURAS REAIS */
+
+        .eco-media-placeholder {
+            min-height: 330px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            background:
+                radial-gradient(circle at 80% 15%, rgba(123,200,45,.15), transparent 35%),
+                #eaf1e7;
+        }
+
+        .eco-mobile-frame {
+            width: 175px;
+            min-height: 260px;
+            padding: 12px;
+            border: 5px solid #204b3b;
+            border-radius: 27px;
+            background: white;
+            box-shadow: 0 18px 40px rgba(0,60,40,.13);
+        }
+
+        .eco-mobile-screen {
+            min-height: 228px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            border-radius: 15px;
+            background: #f5f9f1;
+            color: var(--eco-green);
+            text-align: center;
+        }
+
+        .eco-mobile-screen span {
+            font-size: 2rem;
+        }
+
+        .eco-mobile-screen strong {
+            margin-top: 13px;
+            font-size: .85rem;
+        }
+
+        .eco-mobile-screen small {
+            margin-top: 7px;
+            color: var(--eco-muted);
+            font-size: .68rem;
+            line-height: 1.5;
+        }
+
+        .eco-web-frame {
+            width: min(100%, 410px);
+            overflow: hidden;
+            border: 1px solid #dce5d9;
+            border-radius: 14px;
+            background: white;
+            box-shadow: 0 18px 40px rgba(0,60,40,.1);
+        }
+
+        .eco-browser-bar {
+            height: 30px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 0 12px;
+            border-bottom: 1px solid #e8eee5;
+            background: #f8faf6;
+        }
+
+        .eco-browser-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #b6c6b7;
+        }
+
+        .eco-web-screen {
+            min-height: 190px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            color: var(--eco-green);
+            text-align: center;
+        }
+
+        .eco-web-screen span {
+            font-size: 2.4rem;
+        }
+
+        .eco-web-screen strong {
+            margin-top: 12px;
+            font-size: .95rem;
+        }
+
+        .eco-web-screen small {
+            margin-top: 7px;
+            color: var(--eco-muted);
+            font-size: .75rem;
+            line-height: 1.6;
+        }
+
+        .eco-placeholder-note {
+            margin-top: 12px !important;
+            color: #829186 !important;
+            font-size: .75rem !important;
+            font-style: italic;
+        }
+
+        /* TECNOLOGIAS */
+
+        .eco-tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-top: 45px;
+        }
+
+        .eco-tech-card {
+            padding: 25px 22px;
+            border: 1px solid var(--eco-border);
+            border-radius: 21px;
+            background: white;
+        }
+
+        .eco-tech-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 15px;
+            background: var(--eco-green-pale);
+            font-size: 1.35rem;
+        }
+
+        .eco-tech-card h3 {
+            margin: 19px 0 7px;
+            color: var(--eco-green-dark);
+            font-size: 1.05rem;
+        }
+
+        .eco-tech-card strong {
+            color: var(--eco-green);
+            font-size: .88rem;
+        }
+
+        .eco-tech-card p {
+            margin: 11px 0 0;
+            color: var(--eco-muted);
+            font-size: .86rem;
+            line-height: 1.7;
+        }
+
+        /* EQUIPE */
+
+        .eco-team {
+            background: #eff5ec;
+        }
+
+        .eco-team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 23px;
+            margin-top: 45px;
+        }
+
+        .eco-person-card {
+            overflow: hidden;
+            border: 1px solid var(--eco-border);
+            border-radius: 23px;
+            background: white;
+            text-align: center;
+        }
+
+        .eco-person-photo {
+            min-height: 230px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(circle at 50% 40%, rgba(123,200,45,.19), transparent 55%),
+                #e8f1e4;
+            color: var(--eco-green);
+        }
+
+        .eco-person-photo span {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 9px;
+            color: #668070;
+            font-size: .8rem;
+            font-weight: 700;
+        }
+
+        .eco-person-photo b {
+            font-size: 2.5rem;
+            font-weight: 400;
+        }
+
+        .eco-person-info {
+            padding: 22px 16px 25px;
+        }
+
+        .eco-person-info h3 {
+            margin: 0;
+            color: var(--eco-green-dark);
+            font-size: 1.05rem;
+        }
+
+        .eco-person-info p {
+            margin: 8px 0 0;
+            color: var(--eco-muted);
+            font-size: .85rem;
+        }
+
+        .eco-advisor {
+            margin-top: 30px;
+            color: var(--eco-muted);
+            font-size: .9rem;
+            text-align: center;
+        }
+
+        .eco-advisor strong {
+            color: var(--eco-green);
+        }
+
+        /* ENCERRAMENTO */
+
+        .eco-final {
+            padding: 88px 0;
+            background: var(--eco-green-dark);
+            color: white;
+            text-align: center;
+        }
+
+        .eco-final h2 {
+            max-width: 760px;
+            margin: 0 auto;
+            color: white;
+            font-size: clamp(2rem, 4.5vw, 3.3rem);
+            line-height: 1.15;
+            letter-spacing: -.04em;
+        }
+
+        .eco-final p {
+            max-width: 650px;
+            margin: 20px auto 0;
+            color: rgba(255,255,255,.76);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .eco-final .eco-button {
+            margin-top: 30px;
+        }
+
+        .eco-disclaimer {
+            margin-top: 28px !important;
+            font-size: .78rem !important;
+            color: rgba(255,255,255,.55) !important;
+        }
+
+        /* RODAPÉ */
+
+        .eco-footer {
+            padding: 30px 0;
+            background: #002d22;
+            color: rgba(255,255,255,.75);
+        }
+
+        .eco-footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .eco-footer-brand {
+            color: white;
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+        }
+
+        .eco-footer-brand span {
+            color: var(--eco-green-light);
+        }
+
+        .eco-footer p {
+            margin: 0;
+            font-size: .82rem;
+            line-height: 1.6;
+        }
+
+        .eco-back-top {
+            color: #b5ea7b;
+            font-size: .85rem;
+            font-weight: 800;
+        }
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 1000px) {
+            .eco-nav-links {
+                gap: 17px;
+            }
+
+            .eco-nav-links a {
+                font-size: .8rem;
+            }
+
+            .eco-hero-grid {
+                gap: 35px;
+            }
+
+            .eco-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .eco-tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .eco-about-grid,
+            .eco-problem-grid {
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .eco-container {
+                width: min(100% - 36px, 600px);
+            }
+
+            .eco-section {
+                padding: 70px 0;
+            }
+
+            .eco-nav {
+                min-height: 72px;
+            }
+
+            .eco-logo {
+                width: 155px;
+            }
+
+            .eco-nav-links,
+            .eco-nav-button {
+                display: none;
+            }
+
+            .eco-menu-button {
+                display: flex;
+            }
+
+            .eco-mobile-menu {
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+                padding: 5px 18px 17px;
+                border-top: 1px solid var(--eco-border);
+                background: white;
+            }
+
+            .eco-mobile-menu[hidden] {
+                display: none;
+            }
+
+            .eco-mobile-menu a {
+                padding: 13px 5px;
+                border-bottom: 1px solid #eff2ec;
+                color: var(--eco-green-dark);
+                font-size: .92rem;
+                font-weight: 700;
+            }
+
+            .eco-hero {
+                padding: 70px 0 75px;
+            }
+
+            .eco-hero-grid,
+            .eco-about-grid,
+            .eco-problem-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .eco-hero h1 {
+                font-size: clamp(2.5rem, 10vw, 3.7rem);
+            }
+
+            .eco-hero-text {
+                font-size: 1rem;
+            }
+
+            .eco-hero-visual {
+                min-height: auto;
+            }
+
+            .eco-visual-card {
+                padding: 23px;
+            }
+
+            .eco-about-highlight,
+            .eco-problem-card {
+                padding: 27px;
+            }
+
+            .eco-steps {
+                grid-template-columns: 1fr;
+                gap: 14px;
+                margin-top: 32px;
+            }
+
+            .eco-step {
+                min-height: auto;
+            }
+
+            .eco-platform-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-top: 32px;
+            }
+
+            .eco-media-placeholder {
+                min-height: 285px;
+            }
+
+            .eco-tech-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 13px;
+            }
+
+            .eco-tech-card {
+                padding: 19px 16px;
+            }
+
+            .eco-team-grid {
+                grid-template-columns: 1fr;
+                max-width: 390px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            .eco-person-photo {
+                min-height: 250px;
+            }
+
+            .eco-footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .eco-container {
+                width: calc(100% - 30px);
+            }
+
+            .eco-logo {
+                width: 140px;
+            }
+
+            .eco-hero-actions {
+                flex-direction: column;
+            }
+
+            .eco-button {
+                width: 100%;
+            }
+
+            .eco-tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .eco-visual-card {
+                padding: 18px;
+            }
+
+            .eco-flow-item {
+                padding: 13px;
+            }
+
+            .eco-section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
+            }
+        }
+    @endverbatim
     </style>
 </head>
-<body id="top" class="bg-[#f7f8f1] text-[#18342a] antialiased">
 
-    {{-- TOPO + HERO COM FUNDO VERDE ESCURO GARANTIDO --}}
-    <div class="relative overflow-hidden bg-[#123c2f] text-white"
-         style="background-color: #123c2f; background-image: radial-gradient(ellipse at 80% 20%, rgba(201,243,106,.18), transparent 40%), linear-gradient(125deg, #10382c 0%, #195740 58%, #237a57 100%);">
+<body id="top">
 
-        <header class="relative z-20 border-b border-white/10">
-            <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 lg:px-8" aria-label="Navegação principal">
-                <a href="#" class="brand flex items-center gap-3 text-xl font-extrabold tracking-tight text-white">
-                    <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#c9f36a] text-[#123c2f]" style="background-color: #c9f36a; color: #123c2f;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M12 21c-4.5-2.2-7-5.3-7-9.2C5 7.3 8.1 4 12 3c3.9 1 7 4.3 7 8.8 0 3.9-2.5 7-7 9.2Z" stroke="currentColor" stroke-width="1.8"/>
-                            <path d="M8.5 15.5c1.2-3.2 3.2-5.4 6.8-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                        </svg>
-                    </span>
-                    <span class="text-white">EcoLink<span class="text-[#c9f36a]" style="color: #c9f36a;">.</span></span>
-                </a>
+    <!-- CABEÇALHO -->
+    <header class="eco-header">
+        <div class="eco-container eco-nav">
 
-                <div class="hidden items-center gap-7 text-sm font-semibold text-white/90 md:flex">
-                    <a class="transition hover:text-[#c9f36a]" href="#como-funciona">Módulos</a>
-                    <a class="transition hover:text-[#c9f36a]" href="#educacao-ambiental">Guia de Triagem</a>
-                    <a class="transition hover:text-[#c9f36a]" href="#dados-tcc">Coletas</a>
-                    <a class="transition hover:text-[#c9f36a]" href="#tecnologias">Arquitetura</a>
-                    <a class="transition hover:text-[#c9f36a]" href="#impacto">Impacto</a>
-                </div>
+            <a href="#top" class="eco-brand" aria-label="EcoLink - Página inicial">
+                <img
+                    src="{{ asset('images/ecolink-logo.png') }}"
+                    alt="EcoLink - Conectando pessoas por um mundo mais sustentável"
+                    class="eco-logo"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"
+                >
+                <span class="eco-brand-fallback">EcoLink</span>
+            </a>
 
-                <div class="flex items-center gap-3">
-                    @auth
-                        <a href="{{ route('dashboard') }}" class="rounded-full bg-[#c9f36a] px-5 py-2.5 text-sm font-extrabold text-[#123c2f] transition hover:brightness-95" style="background-color: #c9f36a; color: #123c2f;">
-                            Painel do Síndico
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}" class="hidden rounded-full px-4 py-2.5 text-sm font-bold text-white transition hover:bg-white/10 sm:inline-flex">
-                            Entrar
-                        </a>
-                        <a href="{{ route('register') }}" class="rounded-full bg-[#c9f36a] px-5 py-2.5 text-sm font-extrabold text-[#123c2f] transition hover:brightness-95" style="background-color: #c9f36a; color: #123c2f;">
-                            Começar <span aria-hidden="true">↗</span>
-                        </a>
-                    @endauth
-                </div>
+            <nav class="eco-nav-links" aria-label="Navegação principal">
+                <a href="#sobre">O projeto</a>
+                <a href="#desafio">O desafio</a>
+                <a href="#funcionamento">Como funciona</a>
+                <a href="#plataformas">Plataformas</a>
+                <a href="#equipe">Equipe</a>
             </nav>
-        </header>
 
-        <section class="relative px-5 pb-20 pt-14 text-white lg:px-8 lg:pb-28 lg:pt-20">
-            <div class="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.05fr_.95fr]">
-                <div class="relative z-10">
-                    <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[.16em] text-white">
-                        <span class="h-2 w-2 rounded-full bg-[#c9f36a]" style="background-color: #c9f36a;"></span> Gestão Inteligente de Resíduos
-                    </div>
-                    <h1 class="max-w-2xl text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-7xl">
-                        O futuro é circular. <span class="text-[#c9f36a]" style="color: #c9f36a;">Vamos conectar.</span>
-                    </h1>
-                    <p class="mt-6 max-w-xl text-base leading-8 text-white/85 sm:text-lg">
-                        Plataforma integrada para gestão de resíduos sólidos em condomínios, conectando moradores, síndicos e catadores com foco em logística reversa e economia circular.
-                    </p>
-                    <div class="mt-9 flex flex-wrap gap-3">
-                        <a href="{{ route('register') }}" class="inline-flex items-center gap-3 rounded-full bg-[#c9f36a] px-6 py-4 text-sm font-extrabold text-[#123c2f] shadow-lg transition hover:-translate-y-1" style="background-color: #c9f36a; color: #123c2f;">
-                            Acessar painel web <span aria-hidden="true">→</span>
-                        </a>
-                        <a href="#dados-tcc" class="inline-flex items-center rounded-full border border-white/30 bg-white/5 px-6 py-4 text-sm font-bold text-white transition hover:bg-white/15">
-                            Ver coletas registradas
-                        </a>
-                    </div>
-                    <div class="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/85">
-                        <span class="flex items-center gap-2"><span class="text-[#c9f36a]" style="color: #c9f36a;">✓</span> Triagem na fonte</span>
-                        <span class="flex items-center gap-2"><span class="text-[#c9f36a]" style="color: #c9f36a;">✓</span> Agendamento de coletas</span>
-                        <span class="flex items-center gap-2"><span class="text-[#c9f36a]" style="color: #c9f36a;">✓</span> Inclusão produtiva de catadores</span>
-                    </div>
-                </div>
+            <a href="#sobre" class="eco-nav-button">Conheça o EcoLink</a>
 
-                <div class="relative mx-auto w-full max-w-xl">
-                    <div class="relative rounded-[2rem] border border-white/20 bg-white/10 p-3 shadow-2xl backdrop-blur">
-                        <div class="rounded-[1.5rem] bg-white p-5 text-slate-800 sm:p-7">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <p class="text-xs font-bold uppercase tracking-widest text-emerald-700">Visão EcoLink</p>
-                                    <h2 class="mt-1 text-xl font-extrabold text-[#123c2f]">Seu condomínio, mais verde.</h2>
-                                </div>
-                                <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#eff9df] text-xl">🌱</span>
-                            </div>
-                            <div class="mt-6 grid grid-cols-2 gap-3">
-                                <div class="rounded-2xl bg-[#f2f7ee] p-4">
-                                    <p class="text-xs font-semibold text-slate-500">Coletas organizadas</p>
-                                    <p class="mt-2 text-3xl font-extrabold text-[#123c2f]">{{ $totalColetas }}</p>
-                                    <p class="mt-1 text-xs text-emerald-700">solicitações no banco</p>
-                                </div>
-                                <div class="rounded-2xl bg-[#f2f7ee] p-4">
-                                    <p class="text-xs font-semibold text-slate-500">Materiais separados</p>
-                                    <p class="mt-2 text-3xl font-extrabold text-[#123c2f]">{{ number_format($totalPeso, 1, ',', '.') }} <span class="text-base">kg</span></p>
-                                    <p class="mt-1 text-xs text-emerald-700">volume total disponível</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 rounded-2xl border border-slate-100 p-4">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <p class="text-sm font-extrabold text-slate-800">{{ $proximaColeta ? $proximaColeta->material : 'Nenhuma coleta pendente' }}</p>
-                                        <p class="mt-1 text-xs text-slate-500">{{ $proximaColeta ? $proximaColeta->ponto_coleta . ' · ' . $proximaColeta->condominio : 'Todas as coletas concluídas' }}</p>
-                                    </div>
-                                    <span class="rounded-full bg-[#eaf7d7] px-3 py-1.5 text-xs font-bold text-[#32613c]">{{ $proximaColeta ? $proximaColeta->status : 'Em dia' }}</span>
-                                </div>
-                                <div class="mt-4 flex items-center gap-3">
-                                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100">♻️</div>
-                                    <div class="flex-1">
-                                        <div class="h-2 overflow-hidden rounded-full bg-slate-100">
-                                            <div class="h-full w-2/3 rounded-full bg-[#237a57]" style="background-color: #237a57;"></div>
-                                        </div>
-                                        <p class="mt-2 text-xs text-slate-500">Logística reversa condominial</p>
-                                    </div>
-                                    <span class="text-xs font-bold text-slate-700">{{ $proximaColeta ? $proximaColeta->data_coleta->format('d/m/Y') : '--/--' }}</span>
-                                </div>
-                            </div>
-                            <p class="mt-4 text-center text-[10px] font-medium text-slate-400">Dados em tempo real conectados ao banco de dados do TCC</p>
-                        </div>
-                    </div>
-                    <div class="absolute -bottom-5 -left-5 hidden rounded-2xl bg-white px-5 py-4 text-slate-800 shadow-xl sm:block">
-                        <p class="text-xs font-semibold text-slate-500">Uma rede que conecta</p>
-                        <p class="mt-1 font-extrabold text-[#123c2f]">Moradores · Síndicos · Catadores</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+            <button
+                class="eco-menu-button"
+                id="eco-menu-button"
+                type="button"
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                aria-controls="eco-mobile-menu"
+            >
+                ☰
+            </button>
+        </div>
+
+        <nav class="eco-mobile-menu" id="eco-mobile-menu" aria-label="Navegação mobile" hidden>
+            <a href="#sobre">O projeto</a>
+            <a href="#desafio">O desafio</a>
+            <a href="#funcionamento">Como funciona</a>
+            <a href="#plataformas">Plataformas</a>
+            <a href="#tecnologias">Tecnologias</a>
+            <a href="#equipe">Nossa equipe</a>
+        </nav>
+    </header>
 
     <main>
-        {{-- FLUXOS E MÓDULOS DO SISTEMA --}}
-        <section id="como-funciona" class="px-5 py-20 lg:px-8 lg:py-24">
-            <div class="mx-auto max-w-7xl">
-                <div class="mx-auto max-w-2xl text-center">
-                    <p class="text-xs font-extrabold uppercase tracking-[.2em] text-emerald-700">Fluxos e Funcionalidades</p>
-                    <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-[#123c2f] sm:text-5xl">Três perfis integrados em um único ecossistema.</h2>
-                    <p class="mt-5 leading-7 text-slate-600">O EcoLink articula as ações de quem gera, administra e coleta os resíduos para evitar deslocamentos improdutivos.</p>
-                </div>
-                <div class="mt-14 grid gap-5 md:grid-cols-3">
-                    <article class="lift rounded-3xl border border-emerald-950/5 bg-white p-7">
-                        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#edf7df] text-2xl">🏠</span>
-                        <p class="mt-6 text-xs font-extrabold uppercase tracking-widest text-emerald-700">01 · Módulo do Morador (App)</p>
-                        <h3 class="mt-2 text-xl font-extrabold text-[#18342a]">Triagem na fonte geradora</h3>
-                        <p class="mt-3 leading-7 text-slate-600">Acesso a guias práticos de educação ambiental para separar corretamente plásticos, papéis, metais e vidros no dia a dia.</p>
-                    </article>
-                    <article class="lift rounded-3xl border border-emerald-950/5 bg-white p-7">
-                        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#edf7df] text-2xl">🏢</span>
-                        <p class="mt-6 text-xs font-extrabold uppercase tracking-widest text-emerald-700">02 · Módulo do Síndico (Web e App)</p>
-                        <h3 class="mt-2 text-xl font-extrabold text-[#18342a]">Gestão das solicitações</h3>
-                        <p class="mt-3 leading-7 text-slate-600">Painel administrativo seguro em Laravel Breeze para cadastrar demandas, informar tipos de materiais e o volume estimado em kg.</p>
-                    </article>
-                    <article class="lift rounded-3xl border border-emerald-950/5 bg-white p-7">
-                        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#edf7df] text-2xl">🚛</span>
-                        <p class="mt-6 text-xs font-extrabold uppercase tracking-widest text-emerald-700">03 · Módulo do Catador (App)</p>
-                        <h3 class="mt-2 text-xl font-extrabold text-[#18342a]">Previsibilidade logística</h3>
-                        <p class="mt-3 leading-7 text-slate-600">Visualização em tempo real de chamados abertos pelos condomínios, aceite de rotas e marcação de conclusão da coleta.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
 
-        {{-- ORIENTAÇÕES EDUCATIVAS DO MORADOR --}}
-        <section id="educacao-ambiental" class="px-5 pb-20 lg:px-8 lg:pb-24">
-            <div class="mx-auto grid max-w-7xl gap-12 rounded-[2rem] bg-[#eaf2e3] p-7 sm:p-10 lg:grid-cols-2 lg:items-center lg:p-16">
+        <!-- APRESENTAÇÃO PRINCIPAL -->
+        <section class="eco-hero">
+            <div class="eco-container eco-hero-grid">
+
                 <div>
-                    <p class="text-xs font-extrabold uppercase tracking-[.2em] text-emerald-800">Educação Ambiental na Prática</p>
-                    <h2 class="mt-4 text-3xl font-extrabold leading-tight text-[#123c2f] sm:text-5xl">Orientação clara reduz erros no descarte.</h2>
-                    <p class="mt-5 leading-8 text-slate-600">A eficiência da reciclagem depende diretamente da qualidade da separação nos domicílios. O EcoLink reúne os pilares essenciais para apoiar moradores e condomínios.</p>
-                    <a href="{{ route('register') }}" class="mt-8 inline-flex items-center gap-3 rounded-full bg-[#123c2f] px-6 py-4 text-sm font-extrabold text-white transition hover:-translate-y-1" style="background-color: #123c2f; color: #ffffff;">
-                        Participar da plataforma <span>→</span>
-                    </a>
-                </div>
-                <div class="grid gap-4 sm:grid-cols-2">
-                    <div class="rounded-3xl bg-white p-5 sm:p-6">
-                        <span class="text-3xl">🧭</span>
-                        <h3 class="mt-4 font-extrabold text-[#18342a]">Como descartar</h3>
-                        <p class="mt-2 text-sm leading-6 text-slate-600">Orientações práticas sobre higienização, acondicionamento e locais corretos de entrega no condomínio.</p>
+                    <div class="eco-hero-label">
+                        <span></span>
+                        Tecnologia e sustentabilidade
                     </div>
-                    <div class="rounded-3xl bg-white p-5 sm:p-6">
-                        <span class="text-3xl">🌎</span>
-                        <h3 class="mt-4 font-extrabold text-[#18342a]">Por que reciclar</h3>
-                        <p class="mt-2 text-sm leading-6 text-slate-600">Conscientização sobre a redução de resíduos em aterros sanitários e o impacto socioambiental positivo.</p>
-                    </div>
-                    <div class="rounded-3xl bg-white p-5 sm:col-span-2 sm:p-6">
-                        <span class="text-3xl">♻️</span>
-                        <h3 class="mt-4 font-extrabold text-[#18342a]">Triagem dos produtos</h3>
-                        <p class="mt-2 text-sm leading-6 text-slate-600">Guias detalhados para separar corretamente <strong>Plásticos</strong>, <strong>Papéis</strong>, <strong>Metais</strong> e <strong>Vidros</strong>, preservando o valor comercial dos materiais para os catadores.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        {{-- SEÇÃO DINÂMICA EXIBINDO TODOS OS DADOS DO BANCO NA PÁGINA INICIAL --}}
-        <section id="dados-tcc" class="px-5 pb-20 lg:px-8 lg:pb-24">
-            <div class="mx-auto max-w-7xl rounded-[2rem] border border-emerald-950/5 bg-white p-7 shadow-sm sm:p-10">
-                <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-                    <div>
-                        <p class="text-xs font-extrabold uppercase tracking-[.2em] text-emerald-700">Base de Dados do TCC · Tempo Real</p>
-                        <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-[#123c2f]">Solicitações de Coleta Registradas ({{ $totalColetas }})</h2>
-                        <p class="mt-2 text-slate-600">Acompanhe os lotes cadastrados pelos síndicos e disponíveis para retirada pelos recicladores.</p>
-                    </div>
-                    @auth
-                        <a href="{{ route('coletas.index') }}" class="inline-flex w-fit items-center gap-2 rounded-full bg-[#123c2f] px-5 py-3 text-sm font-extrabold text-white" style="background-color: #123c2f; color: #ffffff;">
-                            Gerenciar Coletas (CRUD) →
+                    <h1>
+                        Conectando pessoas por um mundo <strong>mais sustentável.</strong>
+                    </h1>
+
+                    <p class="eco-hero-text">
+                        O EcoLink é um sistema desenvolvido para organizar as solicitações
+                        de coleta seletiva em condomínios e aproximar seus representantes
+                        dos catadores de materiais recicláveis.
+                    </p>
+
+                    <div class="eco-hero-actions">
+                        <a href="#sobre" class="eco-button eco-button-primary">
+                            Conheça nosso projeto →
                         </a>
-                    @else
-                        <a href="{{ route('login') }}" class="inline-flex w-fit items-center gap-2 rounded-full bg-[#c9f36a] px-5 py-3 text-sm font-extrabold text-[#123c2f]" style="background-color: #c9f36a; color: #123c2f;">
-                            Acesso do Síndico →
+
+                        <a href="#funcionamento" class="eco-button eco-button-outline">
+                            Como funciona?
                         </a>
-                    @endauth
+                    </div>
+
+                    <p class="eco-hero-note">
+                        <span>EcoLink</span> — Conectando pessoas, facilitando conexões
+                        e organizando a coleta seletiva.
+                    </p>
                 </div>
 
-                <div class="mt-8 overflow-x-auto">
-                    <table class="w-full border-collapse text-left text-sm">
-                        <thead>
-                            <tr class="border-b border-slate-200 text-xs font-extrabold uppercase tracking-wider text-slate-500">
-                                <th class="py-3 pr-4">Material</th>
-                                <th class="px-4 py-3">Categoria</th>
-                                <th class="px-4 py-3">Volume (kg)</th>
-                                <th class="px-4 py-3">Condomínio / Ponto</th>
-                                <th class="px-4 py-3">Data</th>
-                                <th class="px-4 py-3">Status</th>
-                                <th class="py-3 pl-4">Observações</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-100">
-                            @forelse($coletas as $coleta)
-                                <tr class="hover:bg-slate-50/80">
-                                    <td class="py-4 pr-4 font-bold text-slate-800">{{ $coleta->material }}</td>
-                                    <td class="px-4 py-4">
-                                        <span class="rounded-lg bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-800">{{ $coleta->categoria }}</span>
-                                    </td>
-                                    <td class="px-4 py-4 font-extrabold text-[#123c2f]">{{ number_format($coleta->peso_kg, 2, ',', '.') }} kg</td>
-                                    <td class="px-4 py-4">
-                                        <p class="font-semibold text-slate-700">{{ $coleta->condominio }}</p>
-                                        <p class="text-xs text-slate-500">{{ $coleta->ponto_coleta }}</p>
-                                    </td>
-                                    <td class="px-4 py-4 text-slate-600">{{ $coleta->data_coleta->format('d/m/Y') }}</td>
-                                    <td class="px-4 py-4">
-                                        @php
-                                            $badge = match($coleta->status) {
-                                                'Concluída' => 'bg-slate-200 text-slate-700',
-                                                'Planejada' => 'bg-emerald-100 text-emerald-800',
-                                                default => 'bg-amber-100 text-amber-800',
-                                            };
-                                        @endphp
-                                        <span class="rounded-full px-3 py-1 text-xs font-bold {{ $badge }}">{{ $coleta->status }}</span>
-                                    </td>
-                                    <td class="py-4 pl-4 text-xs text-slate-500">{{ $coleta->observacoes ?? '—' }}</td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="7" class="py-8 text-center text-slate-500">Nenhuma coleta cadastrada no banco de dados ainda.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
+                <div class="eco-hero-visual">
+                    <div class="eco-visual-card">
+                        <div class="eco-visual-top">
+                            <div>
+                                <small>Conheça o processo</small>
+                            </div>
+                            <div class="eco-visual-icon">♻</div>
+                        </div>
 
-        {{-- CAMADAS DA ARQUITETURA E TECNOLOGIAS --}}
-        <section id="tecnologias" class="px-5 py-20 lg:px-8 lg:py-24">
-            <div class="mx-auto max-w-7xl">
-                <div class="mx-auto max-w-2xl text-center">
-                    <p class="text-xs font-extrabold uppercase tracking-[.2em] text-emerald-700">Arquitetura Híbrida do TCC</p>
-                    <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-[#123c2f] sm:text-5xl">Camadas e tecnologias do EcoLink</h2>
-                    <p class="mt-5 leading-7 text-slate-600">Sistema dividido em camadas desacopladas para atender moradores, síndicos e catadores com segurança e escalabilidade.</p>
-                </div>
-                <div class="mt-14 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-                    <article class="lift rounded-3xl border border-emerald-950/5 bg-white p-7">
-                        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#edf7df] text-2xl">📱</span>
-                        <h3 class="mt-6 text-xl font-extrabold text-[#18342a]">Mobile</h3>
-                        <p class="mt-2 font-bold text-emerald-800">React Native + TypeScript</p>
-                        <p class="mt-3 leading-7 text-slate-600">Aplicativo para moradores e catadores gerenciarem coletas e acessarem orientações de triagem.</p>
-                    </article>
-                    <article class="lift rounded-3xl border border-emerald-950/5 bg-white p-7">
-                        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#edf7df] text-2xl">🔗</span>
-                        <h3 class="mt-6 text-xl font-extrabold text-[#18342a]">Backend (API)</h3>
-                        <p class="mt-2 font-bold text-emerald-800">Node.js + TypeScript</p>
-                        <p class="mt-3 leading-7 text-slate-600">API responsável pelo processamento assíncrono de requisições e regras de negócio em tempo real.</p>
-                    </article>
-                    <article class="lift rounded-3xl border border-emerald-950/5 bg-white p-7">
-                        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#edf7df] text-2xl">💻</span>
-                        <h3 class="mt-6 text-xl font-extrabold text-[#18342a]">Web (Gestão)</h3>
-                        <p class="mt-2 font-bold text-emerald-800">Laravel + Laravel Breeze</p>
-                        <p class="mt-3 leading-7 text-slate-600">Painel administrativo seguro com padrão MVC para síndicos gerenciarem as solicitações.</p>
-                    </article>
-                    <article class="lift rounded-3xl border border-emerald-950/5 bg-white p-7">
-                        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#edf7df] text-2xl">🗄️</span>
-                        <h3 class="mt-6 text-xl font-extrabold text-[#18342a]">Banco de Dados</h3>
-                        <p class="mt-2 font-bold text-emerald-800">MySQL</p>
-                        <p class="mt-3 leading-7 text-slate-600">Armazenamento estruturado de cadastros, solicitações de coleta e histórico da plataforma.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+                        <h2>Da solicitação à coleta concluída.</h2>
 
-        {{-- FUNDAMENTAÇÃO LEGAL E IMPACTO SOCIOAMBIENTAL --}}
-        <section id="impacto" class="bg-[#123c2f] px-5 py-20 text-white lg:px-8 lg:py-24" style="background-color: #123c2f;">
-            <div class="mx-auto grid max-w-7xl gap-10 md:grid-cols-[.8fr_1.2fr] md:items-center">
-                <div>
-                    <p class="text-xs font-extrabold uppercase tracking-[.2em] text-[#c9f36a]" style="color: #c9f36a;">Fundamentação e Propósito</p>
-                    <h2 class="mt-4 text-3xl font-extrabold leading-tight text-white sm:text-5xl">Alinhado à Política Nacional de Resíduos Sólidos.</h2>
-                </div>
-                <div>
-                    <p class="text-lg leading-8 text-white/85">Inspirado nas diretrizes da <strong class="text-white">Lei nº 12.305/10 (PNRS)</strong>, o EcoLink fortalece a responsabilidade compartilhada pelo ciclo de vida dos produtos, otimizando a logística reversa em escala condominial e promovendo a inclusão social e produtiva dos catadores de materiais recicláveis.</p>
-                    <div class="mt-7 flex flex-wrap gap-3">
-                        <span class="rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm text-white">Política Nacional de Resíduos Sólidos</span>
-                        <span class="rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm text-white">Logística reversa local</span>
-                        <span class="rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm text-white">Inclusão produtiva</span>
-                        <span class="rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm text-white">Economia circular</span>
+                        <div class="eco-flow-item">
+                            <span class="eco-flow-number">01</span>
+                            <div>
+                                <strong>Solicitação registrada</strong>
+                                <small>O condomínio informa os materiais disponíveis.</small>
+                            </div>
+                        </div>
+
+                        <div class="eco-flow-item">
+                            <span class="eco-flow-number">02</span>
+                            <div>
+                                <strong>Coleta aceita</strong>
+                                <small>O catador consulta e aceita a solicitação.</small>
+                            </div>
+                        </div>
+
+                        <div class="eco-flow-item">
+                            <span class="eco-flow-number">03</span>
+                            <div>
+                                <strong>Atendimento confirmado</strong>
+                                <small>As duas partes confirmam a realização da coleta.</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
-        <section class="px-5 py-20 lg:px-8 lg:py-24">
-            <div class="mx-auto max-w-5xl rounded-[2rem] bg-[#c9f36a] px-7 py-12 text-center sm:px-14 sm:py-16" style="background-color: #c9f36a;">
-                <p class="text-xs font-extrabold uppercase tracking-[.2em] text-[#32613c]">Fatec Zona Leste · EnGeTec</p>
-                <h2 class="mx-auto mt-4 max-w-3xl text-3xl font-extrabold leading-tight text-[#123c2f] sm:text-5xl">Vamos transformar a gestão de resíduos nos condomínios?</h2>
-                <p class="mx-auto mt-5 max-w-2xl leading-7 text-[#355544]">Acesse o painel administrativo do EcoLink para registrar coletas e acompanhar os indicadores do projeto.</p>
-                <a href="{{ route('register') }}" class="mt-8 inline-flex rounded-full bg-[#123c2f] px-7 py-4 text-sm font-extrabold text-white transition hover:-translate-y-1" style="background-color: #123c2f; color: #ffffff;">
-                    Acessar a plataforma <span class="ml-3">→</span>
+        <!-- SOBRE O PROJETO -->
+        <section class="eco-section" id="sobre">
+            <div class="eco-container eco-about-grid">
+
+                <div>
+                    <span class="eco-eyebrow">Conheça o EcoLink</span>
+
+                    <h2 class="eco-section-title">
+                        Uma conexão que aproxima quem disponibiliza e quem coleta.
+                    </h2>
+
+                    <p class="eco-section-description">
+                        O EcoLink surgiu com o propósito de facilitar a organização
+                        da coleta seletiva em condomínios por meio da tecnologia.
+                        A proposta é aproximar representantes de condomínios e
+                        catadores em um ambiente digital, reunindo informações
+                        importantes para o acompanhamento das solicitações.
+                    </p>
+
+                    <div class="eco-about-points">
+                        <div class="eco-about-point">
+                            <span class="eco-check">✓</span>
+                            <span>Organização das informações sobre materiais e quantidades disponíveis.</span>
+                        </div>
+
+                        <div class="eco-about-point">
+                            <span class="eco-check">✓</span>
+                            <span>Comunicação entre representantes de condomínios e catadores.</span>
+                        </div>
+
+                        <div class="eco-about-point">
+                            <span class="eco-check">✓</span>
+                            <span>Acompanhamento das etapas de atendimento das solicitações.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="eco-about-highlight">
+                    <div class="eco-symbol">🌱</div>
+
+                    <h3>Nosso propósito</h3>
+
+                    <p>
+                        Utilizar a tecnologia como ferramenta de apoio à organização
+                        da coleta seletiva, tornando as informações mais acessíveis
+                        e aproximando os participantes envolvidos nesse processo.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- O DESAFIO -->
+        <section class="eco-section eco-problem" id="desafio">
+            <div class="eco-container eco-problem-grid">
+
+                <div>
+                    <span class="eco-eyebrow">O problema</span>
+
+                    <h2 class="eco-section-title">
+                        Organizar a coleta seletiva também é um desafio de comunicação.
+                    </h2>
+
+                    <p class="eco-section-description">
+                        A destinação adequada dos materiais recicláveis depende
+                        da participação de diferentes agentes. Nos condomínios,
+                        a organização das informações e o contato entre quem
+                        disponibiliza os materiais e quem realiza a retirada
+                        são partes importantes desse processo.
+                    </p>
+                </div>
+
+                <div class="eco-problem-card">
+                    <h3>Desafios que motivaram o projeto</h3>
+
+                    <div class="eco-problem-item">
+                        <span>↔</span>
+                        <div>
+                            <strong>Comunicação descentralizada</strong><br>
+                            Dificuldade para reunir as informações necessárias
+                            sobre as coletas.
+                        </div>
+                    </div>
+
+                    <div class="eco-problem-item">
+                        <span>📦</span>
+                        <div>
+                            <strong>Informações sobre os materiais</strong><br>
+                            Necessidade de identificar os materiais disponíveis,
+                            suas quantidades e as condições para retirada.
+                        </div>
+                    </div>
+
+                    <div class="eco-problem-item">
+                        <span>📍</span>
+                        <div>
+                            <strong>Organização das retiradas</strong><br>
+                            Importância de informar os locais e as instruções
+                            para o atendimento das solicitações.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- COMO FUNCIONA -->
+        <section class="eco-section" id="funcionamento">
+            <div class="eco-container">
+
+                <span class="eco-eyebrow">A solução na prática</span>
+
+                <h2 class="eco-section-title">
+                    Um processo organizado em etapas.
+                </h2>
+
+                <p class="eco-section-description">
+                    O EcoLink estabelece um fluxo de solicitação e acompanhamento
+                    da coleta, conectando o representante do condomínio ao catador.
+                </p>
+
+                <div class="eco-steps">
+
+                    <article class="eco-step">
+                        <div class="eco-step-number">01</div>
+
+                        <h3>Criação da solicitação</h3>
+
+                        <p>
+                            O representante informa os materiais disponíveis,
+                            as quantidades estimadas e as instruções para a retirada.
+                        </p>
+                    </article>
+
+                    <article class="eco-step">
+                        <div class="eco-step-number">02</div>
+
+                        <h3>Consulta e aceite</h3>
+
+                        <p>
+                            O catador consulta as solicitações disponíveis e
+                            pode aceitar uma coleta para realizar o atendimento.
+                        </p>
+                    </article>
+
+                    <article class="eco-step">
+                        <div class="eco-step-number">03</div>
+
+                        <h3>Confirmação do catador</h3>
+
+                        <p>
+                            Após realizar a retirada dos materiais, o catador
+                            registra no sistema que a coleta foi efetuada.
+                        </p>
+                    </article>
+
+                    <article class="eco-step">
+                        <div class="eco-step-number">04</div>
+
+                        <h3>Confirmação do condomínio</h3>
+
+                        <p>
+                            O representante também confirma a coleta.
+                            O atendimento é concluído após as duas confirmações.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- APLICATIVO E SITE -->
+        <section class="eco-section eco-platforms" id="plataformas">
+            <div class="eco-container">
+
+                <span class="eco-eyebrow">Conheça as plataformas</span>
+
+                <h2 class="eco-section-title">
+                    O EcoLink na palma da mão e na web.
+                </h2>
+
+                <p class="eco-section-description">
+                    O projeto conta com uma aplicação móvel e uma interface web,
+                    integradas a uma API compartilhada e a um banco de dados.
+                    Cada plataforma atende às necessidades dos participantes
+                    do processo de coleta seletiva.
+                </p>
+
+                <div class="eco-platform-grid">
+
+                    <article class="eco-platform-card">
+
+                        <!-- FUTURA SUBSTITUIÇÃO: CAPTURA REAL DO APLICATIVO -->
+                        <div class="eco-media-placeholder">
+                            <div class="eco-mobile-frame">
+                                <div class="eco-mobile-screen">
+                                    <span>📱</span>
+                                    <strong>Aplicativo EcoLink</strong>
+                                    <small>
+                                        Espaço reservado para as capturas
+                                        reais do aplicativo.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="eco-platform-content">
+                            <span class="eco-platform-label">Aplicativo móvel</span>
+
+                            <h3>EcoLink Mobile</h3>
+
+                            <p>
+                                Permite que os participantes acessem as funcionalidades
+                                do sistema pelo celular, incluindo a consulta e o
+                                acompanhamento das solicitações de coleta.
+                            </p>
+
+                            <p class="eco-placeholder-note">
+                                As telas reais do aplicativo serão inseridas nesta seção.
+                            </p>
+                        </div>
+
+                    </article>
+
+                    <article class="eco-platform-card">
+
+                        <!-- FUTURA SUBSTITUIÇÃO: CAPTURA REAL DO SISTEMA WEB -->
+                        <div class="eco-media-placeholder">
+                            <div class="eco-web-frame">
+                                <div class="eco-browser-bar">
+                                    <span class="eco-browser-dot"></span>
+                                    <span class="eco-browser-dot"></span>
+                                    <span class="eco-browser-dot"></span>
+                                </div>
+
+                                <div class="eco-web-screen">
+                                    <span>💻</span>
+                                    <strong>Sistema Web EcoLink</strong>
+                                    <small>
+                                        Espaço reservado para as capturas
+                                        reais da plataforma web.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="eco-platform-content">
+                            <span class="eco-platform-label">Plataforma web</span>
+
+                            <h3>EcoLink Web</h3>
+
+                            <p>
+                                Oferece uma interface para o representante do
+                                condomínio registrar solicitações e acompanhar
+                                o andamento dos atendimentos.
+                            </p>
+
+                            <p class="eco-placeholder-note">
+                                As telas reais do sistema web serão inseridas nesta seção.
+                            </p>
+                        </div>
+
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TECNOLOGIAS -->
+        <section class="eco-section" id="tecnologias">
+            <div class="eco-container">
+
+                <span class="eco-eyebrow">Desenvolvimento do projeto</span>
+
+                <h2 class="eco-section-title">
+                    Tecnologia trabalhando em conjunto.
+                </h2>
+
+                <p class="eco-section-description">
+                    A arquitetura do EcoLink reúne diferentes componentes
+                    integrados para disponibilizar as funcionalidades do sistema.
+                </p>
+
+                <div class="eco-tech-grid">
+
+                    <article class="eco-tech-card">
+                        <div class="eco-tech-icon">🌐</div>
+                        <h3>Aplicação web</h3>
+                        <strong>Next.js + TypeScript</strong>
+                        <p>
+                            Interface web para acesso às funcionalidades
+                            do sistema.
+                        </p>
+                    </article>
+
+                    <article class="eco-tech-card">
+                        <div class="eco-tech-icon">📱</div>
+                        <h3>Aplicativo móvel</h3>
+                        <strong>React Native + TypeScript</strong>
+                        <p>
+                            Aplicação desenvolvida para dispositivos móveis.
+                        </p>
+                    </article>
+
+                    <article class="eco-tech-card">
+                        <div class="eco-tech-icon">🔗</div>
+                        <h3>Integração</h3>
+                        <strong>API compartilhada</strong>
+                        <p>
+                            Centraliza as operações e integra as interfaces
+                            do sistema.
+                        </p>
+                    </article>
+
+                    <article class="eco-tech-card">
+                        <div class="eco-tech-icon">🗄️</div>
+                        <h3>Banco de dados</h3>
+                        <strong>MySQL</strong>
+                        <p>
+                            Armazena as informações utilizadas pelos
+                            componentes do EcoLink.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- EQUIPE -->
+        <section class="eco-section eco-team" id="equipe">
+            <div class="eco-container">
+
+                <div style="text-align: center;">
+                    <span class="eco-eyebrow">Quem está por trás</span>
+
+                    <h2 class="eco-section-title" style="margin-left:auto; margin-right:auto;">
+                        Conheça nossa equipe.
+                    </h2>
+
+                    <p class="eco-section-description" style="margin-left:auto; margin-right:auto;">
+                        O EcoLink é resultado de um trabalho de pesquisa,
+                        planejamento e desenvolvimento realizado em equipe.
+                    </p>
+                </div>
+
+                <div class="eco-team-grid">
+
+                    <article class="eco-person-card">
+                        <!-- FUTURA SUBSTITUIÇÃO: FOTO DO INTEGRANTE -->
+                        <div class="eco-person-photo">
+                            <span>
+                                <b>📷</b>
+                                Foto em breve
+                            </span>
+                        </div>
+
+                        <div class="eco-person-info">
+                            <h3>Pedro Tersi Gomes de Souza</h3>
+                            <p>Integrante do projeto</p>
+                        </div>
+                    </article>
+
+                    <article class="eco-person-card">
+                        <!-- FUTURA SUBSTITUIÇÃO: FOTO DO INTEGRANTE -->
+                        <div class="eco-person-photo">
+                            <span>
+                                <b>📷</b>
+                                Foto em breve
+                            </span>
+                        </div>
+
+                        <div class="eco-person-info">
+                            <h3>Renan Pereira Rezaghi</h3>
+                            <p>Integrante do projeto</p>
+                        </div>
+                    </article>
+
+                    <article class="eco-person-card">
+                        <!-- FUTURA SUBSTITUIÇÃO: FOTO DO INTEGRANTE -->
+                        <div class="eco-person-photo">
+                            <span>
+                                <b>📷</b>
+                                Foto em breve
+                            </span>
+                        </div>
+
+                        <div class="eco-person-info">
+                            <h3>Rodrigo Rocha Silva</h3>
+                            <p>Integrante do projeto</p>
+                        </div>
+                    </article>
+
+                </div>
+
+                <p class="eco-advisor">
+                    Orientador do projeto: <strong>Jeferson Roberto de Lima</strong>
+                </p>
+
+            </div>
+        </section>
+
+        <!-- ENCERRAMENTO -->
+        <section class="eco-final">
+            <div class="eco-container">
+
+                <span class="eco-eyebrow" style="color:#a5e65b;">
+                    EcoLink
+                </span>
+
+                <h2>
+                    Conectando pessoas por um mundo mais sustentável.
+                </h2>
+
+                <p>
+                    Acreditamos que a tecnologia pode aproximar pessoas,
+                    organizar processos e apoiar iniciativas voltadas
+                    à coleta seletiva.
+                </p>
+
+                <a href="#top" class="eco-button eco-button-primary">
+                    Voltar ao início ↑
                 </a>
+
+                <p class="eco-disclaimer">
+                    Projeto desenvolvido e verificado funcionalmente com contas de teste.
+                    Avaliações com usuários em situações reais e mensuração de impacto
+                    socioambiental são etapas futuras.
+                </p>
+
             </div>
         </section>
+
     </main>
 
-    <footer class="bg-[#0b2b21] px-5 py-8 text-white lg:px-8" style="background-color: #0b2b21;">
-        <div class="mx-auto flex max-w-7xl flex-col justify-between gap-5 sm:flex-row sm:items-center">
-            <a href="#" class="brand flex items-center gap-2 text-lg font-extrabold text-white">EcoLink<span class="text-[#c9f36a]" style="color: #c9f36a;">.</span></a>
-            <p class="text-sm text-white/70">EcoLink · Gestão Inteligente de Resíduos em Condomínios · 2026</p>
-            <a href="#top" class="text-sm font-bold text-white/90 hover:text-white">Voltar ao topo ↑</a>
+    <!-- RODAPÉ -->
+    <footer class="eco-footer">
+        <div class="eco-container eco-footer-content">
+
+            <div class="eco-footer-brand">
+                EcoLink<span>.</span>
+            </div>
+
+            <p>
+                Conectando pessoas por um mundo mais sustentável.<br>
+                © 2026 EcoLink.
+            </p>
+
+            <a href="#top" class="eco-back-top">
+                Voltar ao topo ↑
+            </a>
+
         </div>
     </footer>
+
+    <script>
+        const menuButton = document.getElementById('eco-menu-button');
+        const mobileMenu = document.getElementById('eco-mobile-menu');
+
+        menuButton.addEventListener('click', function () {
+            const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+
+            menuButton.setAttribute('aria-expanded', String(!isExpanded));
+            menuButton.setAttribute(
+                'aria-label',
+                isExpanded ? 'Abrir menu' : 'Fechar menu'
+            );
+
+            mobileMenu.hidden = isExpanded;
+            menuButton.textContent = isExpanded ? '☰' : '✕';
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                mobileMenu.hidden = true;
+                menuButton.setAttribute('aria-expanded', 'false');
+                menuButton.setAttribute('aria-label', 'Abrir menu');
+                menuButton.textContent = '☰';
+            });
+        });
+    </script>
+
 </body>
 </html>
