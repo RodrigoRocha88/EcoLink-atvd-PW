@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta name="description" content="EcoLink: conectando representantes de condomínios e catadores para organizar a coleta seletiva.">
-
     <meta name="theme-color" content="#ffffff">
 
     <title>EcoLink — Conectando pessoas por um mundo mais sustentável</title>
@@ -15,7 +13,6 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
@@ -606,10 +603,6 @@
             font-weight: 800;
         }
 
-        .eco-platform-badge span {
-            font-size: 1rem;
-        }
-
         .eco-showcase {
             padding: 32px;
             margin-top: 38px;
@@ -667,7 +660,7 @@
             white-space: nowrap;
         }
 
-        /* CATEGORIAS DO APLICATIVO */
+        /* PERFIS DO APLICATIVO */
 
         .eco-profile-tabs {
             display: flex;
@@ -985,6 +978,54 @@
             font-size: .85rem;
         }
 
+        /* BOTÃO LINKEDIN */
+
+        .eco-linkedin-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 42px;
+            margin-top: 17px;
+            padding: 10px 17px;
+            border: 1px solid #d7e6dc;
+            border-radius: 999px;
+            background: #f7fbf7;
+            color: var(--eco-green);
+            font-size: .82rem;
+            font-weight: 800;
+            transition: .2s ease;
+        }
+
+        .eco-linkedin-link:hover {
+            transform: translateY(-2px);
+            border-color: var(--eco-green);
+            background: var(--eco-green);
+            color: white;
+            box-shadow: 0 7px 18px rgba(0, 80, 55, .14);
+        }
+
+        .eco-linkedin-mark {
+            width: 23px;
+            height: 23px;
+            display: grid;
+            flex-shrink: 0;
+            place-items: center;
+            border-radius: 5px;
+            background: var(--eco-green);
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 900;
+            line-height: 1;
+            transition: .2s;
+        }
+
+        .eco-linkedin-link:hover .eco-linkedin-mark {
+            background: white;
+            color: var(--eco-green);
+        }
+
         .eco-advisor {
             margin-top: 30px;
             color: var(--eco-muted);
@@ -1104,7 +1145,6 @@
         }
 
         @media (max-width: 760px) {
-
             .eco-container {
                 width: min(100% - 36px, 600px);
             }
@@ -1293,6 +1333,12 @@
                 min-height: 280px;
             }
 
+            .eco-linkedin-link {
+                width: 100%;
+                max-width: 260px;
+                margin-top: 16px;
+            }
+
             .eco-footer-content {
                 flex-direction: column;
                 align-items: flex-start;
@@ -1300,7 +1346,6 @@
         }
 
         @media (max-width: 420px) {
-
             .eco-container {
                 width: calc(100% - 30px);
             }
@@ -1347,6 +1392,10 @@
 
             .eco-showcase {
                 padding: 16px 11px;
+            }
+
+            .eco-person-info {
+                padding: 20px 14px 23px;
             }
         }
 
@@ -1741,11 +1790,7 @@
                                 <article class="eco-gallery-slide">
                                     <div class="eco-gallery-card">
                                         <div class="eco-gallery-media eco-gallery-media--web">
-                                            <img
-                                                src="{{ asset('images/web-admin-painel.png') }}"
-                                                alt="Painel administrativo do EcoLink"
-                                                loading="lazy"
-                                            >
+                                            <img src="{{ asset('images/web-admin-painel.png') }}" alt="Painel administrativo do EcoLink" loading="lazy">
                                         </div>
 
                                         <div class="eco-gallery-info">
@@ -1762,11 +1807,7 @@
                                 <article class="eco-gallery-slide">
                                     <div class="eco-gallery-card">
                                         <div class="eco-gallery-media eco-gallery-media--web">
-                                            <img
-                                                src="{{ asset('images/web-admin-contas.png') }}"
-                                                alt="Visão geral das contas do EcoLink"
-                                                loading="lazy"
-                                            >
+                                            <img src="{{ asset('images/web-admin-contas.png') }}" alt="Visão geral das contas do EcoLink" loading="lazy">
                                         </div>
 
                                         <div class="eco-gallery-info">
@@ -1783,11 +1824,7 @@
                                 <article class="eco-gallery-slide">
                                     <div class="eco-gallery-card">
                                         <div class="eco-gallery-media eco-gallery-media--web">
-                                            <img
-                                                src="{{ asset('images/web-admin-gerenciar-contas.png') }}"
-                                                alt="Gerenciamento dos participantes do EcoLink"
-                                                loading="lazy"
-                                            >
+                                            <img src="{{ asset('images/web-admin-gerenciar-contas.png') }}" alt="Gerenciamento dos participantes do EcoLink" loading="lazy">
                                         </div>
 
                                         <div class="eco-gallery-info">
@@ -1810,13 +1847,8 @@
                             </span>
 
                             <div class="eco-carousel-buttons">
-                                <button class="eco-carousel-button" type="button" data-carousel-prev aria-label="Imagem anterior">
-                                    ←
-                                </button>
-
-                                <button class="eco-carousel-button" type="button" data-carousel-next aria-label="Próxima imagem">
-                                    →
-                                </button>
+                                <button class="eco-carousel-button" type="button" data-carousel-prev aria-label="Imagem anterior">←</button>
+                                <button class="eco-carousel-button" type="button" data-carousel-next aria-label="Próxima imagem">→</button>
                             </div>
                         </div>
 
@@ -1859,44 +1891,22 @@
                     <!-- ABAS DOS PERFIS -->
                     <div class="eco-profile-tabs" role="tablist" aria-label="Perfis do aplicativo">
 
-                        <button
-                            class="eco-profile-tab"
-                            type="button"
-                            role="tab"
-                            data-profile-tab="catador"
-                            aria-selected="true"
-                        >
+                        <button class="eco-profile-tab" type="button" role="tab" data-profile-tab="catador" aria-selected="true">
                             ♻ Catador
                         </button>
 
-                        <button
-                            class="eco-profile-tab"
-                            type="button"
-                            role="tab"
-                            data-profile-tab="representante"
-                            aria-selected="false"
-                        >
+                        <button class="eco-profile-tab" type="button" role="tab" data-profile-tab="representante" aria-selected="false">
                             🏢 Representante
                         </button>
 
-                        <button
-                            class="eco-profile-tab"
-                            type="button"
-                            role="tab"
-                            data-profile-tab="ponto"
-                            aria-selected="false"
-                        >
+                        <button class="eco-profile-tab" type="button" role="tab" data-profile-tab="ponto" aria-selected="false">
                             📍 Responsável por ponto
                         </button>
 
                     </div>
 
                     <!-- PERFIL CATADOR -->
-                    <div
-                        class="eco-profile-panel"
-                        data-profile-panel="catador"
-                        role="tabpanel"
-                    >
+                    <div class="eco-profile-panel" data-profile-panel="catador" role="tabpanel">
 
                         <p class="eco-profile-description">
                             O catador pode consultar oportunidades de coleta,
@@ -1911,13 +1921,8 @@
 
                                     <article class="eco-gallery-slide">
                                         <div class="eco-gallery-card">
-
                                             <div class="eco-gallery-media eco-gallery-media--mobile">
-                                                <img
-                                                    src="{{ asset('images/app-catador-coletas-disponiveis.jpeg') }}"
-                                                    alt="Lista de coletas disponíveis para o catador"
-                                                    loading="lazy"
-                                                >
+                                                <img src="{{ asset('images/app-catador-coletas-disponiveis.jpeg') }}" alt="Lista de coletas disponíveis para o catador" loading="lazy">
                                             </div>
 
                                             <div class="eco-gallery-info">
@@ -1928,19 +1933,13 @@
                                                     disponibilizadas pelos condomínios.
                                                 </p>
                                             </div>
-
                                         </div>
                                     </article>
 
                                     <article class="eco-gallery-slide">
                                         <div class="eco-gallery-card">
-
                                             <div class="eco-gallery-media eco-gallery-media--mobile">
-                                                <img
-                                                    src="{{ asset('images/app-catador-minhas-coletas-1.jpeg') }}"
-                                                    alt="Coletas aceitas pelo catador"
-                                                    loading="lazy"
-                                                >
+                                                <img src="{{ asset('images/app-catador-minhas-coletas-1.jpeg') }}" alt="Coletas aceitas pelo catador" loading="lazy">
                                             </div>
 
                                             <div class="eco-gallery-info">
@@ -1951,19 +1950,13 @@
                                                     aceitas e dos atendimentos em andamento.
                                                 </p>
                                             </div>
-
                                         </div>
                                     </article>
 
                                     <article class="eco-gallery-slide">
                                         <div class="eco-gallery-card">
-
                                             <div class="eco-gallery-media eco-gallery-media--mobile">
-                                                <img
-                                                    src="{{ asset('images/app-catador-minhas-coletas-2.jpeg') }}"
-                                                    alt="Detalhes e confirmação da coleta"
-                                                    loading="lazy"
-                                                >
+                                                <img src="{{ asset('images/app-catador-minhas-coletas-2.jpeg') }}" alt="Detalhes e confirmação da coleta" loading="lazy">
                                             </div>
 
                                             <div class="eco-gallery-info">
@@ -1974,19 +1967,13 @@
                                                     e registro da retirada realizada.
                                                 </p>
                                             </div>
-
                                         </div>
                                     </article>
 
                                     <article class="eco-gallery-slide">
                                         <div class="eco-gallery-card">
-
                                             <div class="eco-gallery-media eco-gallery-media--mobile">
-                                                <img
-                                                    src="{{ asset('images/app-catador-pontos-reciclagem.jpeg') }}"
-                                                    alt="Consulta aos pontos de reciclagem"
-                                                    loading="lazy"
-                                                >
+                                                <img src="{{ asset('images/app-catador-pontos-reciclagem.jpeg') }}" alt="Consulta aos pontos de reciclagem" loading="lazy">
                                             </div>
 
                                             <div class="eco-gallery-info">
@@ -1998,7 +1985,6 @@
                                                     os pontos de reciclagem.
                                                 </p>
                                             </div>
-
                                         </div>
                                     </article>
 
@@ -2011,27 +1997,16 @@
                                 </span>
 
                                 <div class="eco-carousel-buttons">
-                                    <button class="eco-carousel-button" type="button" data-carousel-prev aria-label="Imagem anterior">
-                                        ←
-                                    </button>
-
-                                    <button class="eco-carousel-button" type="button" data-carousel-next aria-label="Próxima imagem">
-                                        →
-                                    </button>
+                                    <button class="eco-carousel-button" type="button" data-carousel-prev aria-label="Imagem anterior">←</button>
+                                    <button class="eco-carousel-button" type="button" data-carousel-next aria-label="Próxima imagem">→</button>
                                 </div>
                             </div>
 
                         </div>
-
                     </div>
 
                     <!-- PERFIL REPRESENTANTE -->
-                    <div
-                        class="eco-profile-panel"
-                        data-profile-panel="representante"
-                        role="tabpanel"
-                        hidden
-                    >
+                    <div class="eco-profile-panel" data-profile-panel="representante" role="tabpanel" hidden>
 
                         <p class="eco-profile-description">
                             O representante registra os materiais disponíveis,
@@ -2046,13 +2021,8 @@
 
                                     <article class="eco-gallery-slide">
                                         <div class="eco-gallery-card">
-
                                             <div class="eco-gallery-media eco-gallery-media--mobile">
-                                                <img
-                                                    src="{{ asset('images/app-representante-solicitacao-1.jpeg') }}"
-                                                    alt="Primeira etapa de criação de uma solicitação"
-                                                    loading="lazy"
-                                                >
+                                                <img src="{{ asset('images/app-representante-solicitacao-1.jpeg') }}" alt="Primeira etapa de criação de uma solicitação" loading="lazy">
                                             </div>
 
                                             <div class="eco-gallery-info">
@@ -2064,19 +2034,13 @@
                                                     para a coleta.
                                                 </p>
                                             </div>
-
                                         </div>
                                     </article>
 
                                     <article class="eco-gallery-slide">
                                         <div class="eco-gallery-card">
-
                                             <div class="eco-gallery-media eco-gallery-media--mobile">
-                                                <img
-                                                    src="{{ asset('images/app-representante-solicitacao-2.jpeg') }}"
-                                                    alt="Continuação do formulário de solicitação"
-                                                    loading="lazy"
-                                                >
+                                                <img src="{{ asset('images/app-representante-solicitacao-2.jpeg') }}" alt="Continuação do formulário de solicitação" loading="lazy">
                                             </div>
 
                                             <div class="eco-gallery-info">
@@ -2088,19 +2052,13 @@
                                                     para a retirada.
                                                 </p>
                                             </div>
-
                                         </div>
                                     </article>
 
                                     <article class="eco-gallery-slide">
                                         <div class="eco-gallery-card">
-
                                             <div class="eco-gallery-media eco-gallery-media--mobile">
-                                                <img
-                                                    src="{{ asset('images/app-representante-solicitacoes.jpeg') }}"
-                                                    alt="Acompanhamento das solicitações do condomínio"
-                                                    loading="lazy"
-                                                >
+                                                <img src="{{ asset('images/app-representante-solicitacoes.jpeg') }}" alt="Acompanhamento das solicitações do condomínio" loading="lazy">
                                             </div>
 
                                             <div class="eco-gallery-info">
@@ -2112,7 +2070,6 @@
                                                     e seus respectivos estados.
                                                 </p>
                                             </div>
-
                                         </div>
                                     </article>
 
@@ -2125,27 +2082,16 @@
                                 </span>
 
                                 <div class="eco-carousel-buttons">
-                                    <button class="eco-carousel-button" type="button" data-carousel-prev aria-label="Imagem anterior">
-                                        ←
-                                    </button>
-
-                                    <button class="eco-carousel-button" type="button" data-carousel-next aria-label="Próxima imagem">
-                                        →
-                                    </button>
+                                    <button class="eco-carousel-button" type="button" data-carousel-prev aria-label="Imagem anterior">←</button>
+                                    <button class="eco-carousel-button" type="button" data-carousel-next aria-label="Próxima imagem">→</button>
                                 </div>
                             </div>
 
                         </div>
-
                     </div>
 
                     <!-- PERFIL RESPONSÁVEL POR PONTO -->
-                    <div
-                        class="eco-profile-panel"
-                        data-profile-panel="ponto"
-                        role="tabpanel"
-                        hidden
-                    >
+                    <div class="eco-profile-panel" data-profile-panel="ponto" role="tabpanel" hidden>
 
                         <p class="eco-profile-description">
                             O responsável pelo ponto de reciclagem pode
@@ -2154,20 +2100,15 @@
                             participantes.
                         </p>
 
-                        <div class="eco-carousel">
+                        <div class="eco-carousel" data-carousel>
 
                             <div class="eco-carousel-viewport">
                                 <div class="eco-carousel-track">
 
                                     <article class="eco-gallery-slide">
                                         <div class="eco-gallery-card">
-
                                             <div class="eco-gallery-media eco-gallery-media--mobile">
-                                                <img
-                                                    src="{{ asset('images/app-ponto-cadastro-1.jpeg') }}"
-                                                    alt="Início do cadastro do responsável pelo ponto de reciclagem"
-                                                    loading="lazy"
-                                                >
+                                                <img src="{{ asset('images/app-ponto-cadastro-1.jpeg') }}" alt="Início do cadastro do responsável pelo ponto de reciclagem" loading="lazy">
                                             </div>
 
                                             <div class="eco-gallery-info">
@@ -2179,19 +2120,13 @@
                                                     responsável pelo ponto.
                                                 </p>
                                             </div>
-
                                         </div>
                                     </article>
 
                                     <article class="eco-gallery-slide">
                                         <div class="eco-gallery-card">
-
                                             <div class="eco-gallery-media eco-gallery-media--mobile">
-                                                <img
-                                                    src="{{ asset('images/app-ponto-cadastro-2.jpeg') }}"
-                                                    alt="Formulário de cadastro de ponto de reciclagem"
-                                                    loading="lazy"
-                                                >
+                                                <img src="{{ asset('images/app-ponto-cadastro-2.jpeg') }}" alt="Formulário de cadastro de ponto de reciclagem" loading="lazy">
                                             </div>
 
                                             <div class="eco-gallery-info">
@@ -2203,7 +2138,6 @@
                                                     e informações do estabelecimento.
                                                 </p>
                                             </div>
-
                                         </div>
                                     </article>
 
@@ -2216,18 +2150,12 @@
                                 </span>
 
                                 <div class="eco-carousel-buttons">
-                                    <button class="eco-carousel-button" type="button" data-carousel-prev aria-label="Imagem anterior">
-                                        ←
-                                    </button>
-
-                                    <button class="eco-carousel-button" type="button" data-carousel-next aria-label="Próxima imagem">
-                                        →
-                                    </button>
+                                    <button class="eco-carousel-button" type="button" data-carousel-prev aria-label="Imagem anterior">←</button>
+                                    <button class="eco-carousel-button" type="button" data-carousel-next aria-label="Próxima imagem">→</button>
                                 </div>
                             </div>
 
                         </div>
-
                     </div>
 
                     <div class="eco-showcase-note">
@@ -2327,8 +2255,9 @@
                         class="eco-section-description"
                         style="margin-left:auto; margin-right:auto;"
                     >
-                        O EcoLink é resultado de um trabalho de pesquisa,
-                        planejamento e desenvolvimento realizado em equipe.
+                        O EcoLink é resultado de um trabalho de
+                        pesquisa, planejamento e desenvolvimento
+                        realizado em equipe.
                     </p>
 
                 </div>
@@ -2353,6 +2282,17 @@
                         <div class="eco-person-info">
                             <h3>Pedro Tersi Gomes de Souza</h3>
                             <p>Integrante do projeto</p>
+
+                            <a
+                                href="https://www.linkedin.com/in/pedro-tersi-gomes-de-souza-509278385/"
+                                class="eco-linkedin-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Acessar perfil de Pedro no LinkedIn, abre em nova aba"
+                            >
+                                <span class="eco-linkedin-mark">in</span>
+                                Conectar no LinkedIn
+                            </a>
                         </div>
 
                     </article>
@@ -2375,6 +2315,17 @@
                         <div class="eco-person-info">
                             <h3>Renan Pereira Rezaghi</h3>
                             <p>Integrante do projeto</p>
+
+                            <a
+                                href="https://www.linkedin.com/in/renan-rezaghi-619a90376/"
+                                class="eco-linkedin-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Acessar perfil de Renan no LinkedIn, abre em nova aba"
+                            >
+                                <span class="eco-linkedin-mark">in</span>
+                                Conectar no LinkedIn
+                            </a>
                         </div>
 
                     </article>
@@ -2397,6 +2348,17 @@
                         <div class="eco-person-info">
                             <h3>Rodrigo Rocha Silva</h3>
                             <p>Integrante do projeto</p>
+
+                            <a
+                                href="https://www.linkedin.com/in/rodrigo-rochadev/"
+                                class="eco-linkedin-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Acessar perfil de Rodrigo no LinkedIn, abre em nova aba"
+                            >
+                                <span class="eco-linkedin-mark">in</span>
+                                Conectar no LinkedIn
+                            </a>
                         </div>
 
                     </article>
@@ -2503,7 +2465,7 @@
         });
 
 
-        // NAVEGAÇÃO DOS CARROSSÉIS
+        // NAVEGAÇÃO DOS CARROSSEIS
 
         document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
 
