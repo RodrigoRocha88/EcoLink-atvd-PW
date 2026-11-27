@@ -7,6 +7,8 @@
 
     <meta name="description" content="EcoLink: conectando representantes de condomínios e catadores para organizar a coleta seletiva.">
 
+    <meta name="theme-color" content="#ffffff">
+
     <title>EcoLink — Conectando pessoas por um mundo mais sustentável</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -576,154 +578,303 @@
             background: white;
         }
 
-        .eco-platform-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 27px;
-            margin-top: 48px;
+        .eco-platform-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 25px;
+            margin-bottom: 35px;
         }
 
-        .eco-platform-card {
-            overflow: hidden;
-            border: 1px solid var(--eco-border);
-            border-radius: 26px;
-            background: var(--eco-background);
-        }
-
-        .eco-platform-content {
-            padding: 28px;
-        }
-
-        .eco-platform-label {
-            color: var(--eco-green);
-            font-size: .75rem;
-            font-weight: 800;
-            letter-spacing: .13em;
-            text-transform: uppercase;
-        }
-
-        .eco-platform-card h3 {
-            margin: 10px 0;
-            color: var(--eco-green-dark);
-            font-size: 1.5rem;
-        }
-
-        .eco-platform-card p {
-            margin: 0;
+        .eco-platform-heading p {
+            max-width: 660px;
+            margin: 16px 0 0;
             color: var(--eco-muted);
+            line-height: 1.8;
+        }
+
+        .eco-platform-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: var(--eco-green-pale);
+            color: var(--eco-green);
+            font-size: .79rem;
+            font-weight: 800;
+        }
+
+        .eco-platform-badge span {
+            font-size: 1rem;
+        }
+
+        .eco-showcase {
+            padding: 32px;
+            margin-top: 38px;
+            border: 1px solid var(--eco-border);
+            border-radius: 28px;
+            background: #fbfcfa;
+        }
+
+        .eco-showcase-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 26px;
+        }
+
+        .eco-showcase-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .eco-showcase-icon {
+            width: 49px;
+            height: 49px;
+            display: grid;
+            flex-shrink: 0;
+            place-items: center;
+            border-radius: 15px;
+            background: var(--eco-green-pale);
+            color: var(--eco-green);
+            font-size: 1.35rem;
+        }
+
+        .eco-showcase-title h3 {
+            margin: 0;
+            color: var(--eco-green-dark);
+            font-size: 1.3rem;
+        }
+
+        .eco-showcase-title p {
+            margin: 5px 0 0;
+            color: var(--eco-muted);
+            font-size: .83rem;
+        }
+
+        .eco-count {
+            padding: 8px 12px;
+            border: 1px solid var(--eco-border);
+            border-radius: 999px;
+            background: white;
+            color: var(--eco-muted);
+            font-size: .76rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* CATEGORIAS DO APLICATIVO */
+
+        .eco-profile-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin: 0 0 26px;
+            padding: 6px;
+            border-radius: 16px;
+            background: #edf2eb;
+        }
+
+        .eco-profile-tab {
+            min-height: 43px;
+            padding: 11px 18px;
+            border: 0;
+            border-radius: 11px;
+            background: transparent;
+            color: #627268;
+            font-size: .84rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .eco-profile-tab:hover {
+            color: var(--eco-green);
+        }
+
+        .eco-profile-tab[aria-selected="true"] {
+            background: white;
+            color: var(--eco-green);
+            box-shadow: 0 3px 13px rgba(0,60,40,.08);
+        }
+
+        .eco-profile-panel[hidden] {
+            display: none !important;
+        }
+
+        .eco-profile-description {
+            margin: 0 0 22px;
+            color: var(--eco-muted);
+            font-size: .94rem;
             line-height: 1.7;
         }
 
-        /* ESPAÇOS PARA AS CAPTURAS DO SISTEMA */
+        /* CARROSSEL */
 
-        .eco-media-placeholder {
-            min-height: 330px;
+        .eco-carousel {
+            position: relative;
+        }
+
+        .eco-carousel-viewport {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .eco-carousel-viewport::-webkit-scrollbar {
+            display: none;
+        }
+
+        .eco-carousel-track {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 25px;
-            background:
-                radial-gradient(circle at 80% 15%, rgba(123,200,45,.15), transparent 35%),
-                #eaf1e7;
+            align-items: stretch;
+            gap: 20px;
+            padding: 4px 2px 12px;
         }
 
-        .eco-mobile-frame {
-            width: 175px;
-            min-height: 260px;
-            padding: 12px;
-            border: 5px solid #204b3b;
-            border-radius: 27px;
-            background: white;
-            box-shadow: 0 18px 40px rgba(0,60,40,.13);
+        .eco-gallery-slide {
+            min-width: 0;
+            flex: 0 0 min(82%, 560px);
+            scroll-snap-align: start;
         }
 
-        .eco-mobile-screen {
-            min-height: 228px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-            border-radius: 15px;
-            background: #f5f9f1;
-            color: var(--eco-green);
-            text-align: center;
-        }
-
-        .eco-mobile-screen span {
-            font-size: 2rem;
-        }
-
-        .eco-mobile-screen strong {
-            margin-top: 13px;
-            font-size: .85rem;
-        }
-
-        .eco-mobile-screen small {
-            margin-top: 7px;
-            color: var(--eco-muted);
-            font-size: .68rem;
-            line-height: 1.5;
-        }
-
-        .eco-web-frame {
-            width: min(100%, 410px);
+        .eco-gallery-card {
+            height: 100%;
             overflow: hidden;
-            border: 1px solid #dce5d9;
-            border-radius: 14px;
+            border: 1px solid var(--eco-border);
+            border-radius: 21px;
             background: white;
-            box-shadow: 0 18px 40px rgba(0,60,40,.1);
+            box-shadow: 0 8px 24px rgba(0,55,35,.045);
         }
 
-        .eco-browser-bar {
-            height: 30px;
+        .eco-gallery-media {
+            position: relative;
             display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 0 12px;
-            border-bottom: 1px solid #e8eee5;
-            background: #f8faf6;
-        }
-
-        .eco-browser-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #b6c6b7;
-        }
-
-        .eco-web-screen {
-            min-height: 190px;
-            display: flex;
-            flex-direction: column;
+            min-height: 300px;
             align-items: center;
             justify-content: center;
-            padding: 25px;
+            overflow: hidden;
+            padding: 17px;
+            background:
+                radial-gradient(circle at 80% 15%, rgba(123,200,45,.12), transparent 40%),
+                #edf3eb;
+        }
+
+        .eco-gallery-media--web {
+            min-height: 300px;
+        }
+
+        .eco-gallery-media--web img {
+            width: 100%;
+            max-height: 320px;
+            object-fit: contain;
+            object-position: center;
+            border-radius: 8px;
+        }
+
+        .eco-gallery-media--mobile {
+            min-height: 475px;
+            padding: 18px;
+        }
+
+        .eco-gallery-media--mobile img {
+            width: auto;
+            max-width: 100%;
+            height: 440px;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 12px 35px rgba(0,40,25,.1);
+        }
+
+        .eco-gallery-info {
+            padding: 20px 22px 23px;
+        }
+
+        .eco-gallery-number {
+            display: inline-block;
+            margin-bottom: 8px;
             color: var(--eco-green);
-            text-align: center;
+            font-size: .72rem;
+            font-weight: 900;
+            letter-spacing: .12em;
         }
 
-        .eco-web-screen span {
-            font-size: 2.4rem;
+        .eco-gallery-info h4 {
+            margin: 0;
+            color: var(--eco-green-dark);
+            font-size: 1.02rem;
         }
 
-        .eco-web-screen strong {
-            margin-top: 12px;
-            font-size: .95rem;
-        }
-
-        .eco-web-screen small {
-            margin-top: 7px;
+        .eco-gallery-info p {
+            margin: 8px 0 0;
             color: var(--eco-muted);
-            font-size: .75rem;
+            font-size: .85rem;
+            line-height: 1.65;
+        }
+
+        .eco-carousel-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 17px;
+        }
+
+        .eco-carousel-hint {
+            color: #829186;
+            font-size: .78rem;
+        }
+
+        .eco-carousel-buttons {
+            display: flex;
+            gap: 9px;
+        }
+
+        .eco-carousel-button {
+            width: 43px;
+            height: 43px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--eco-border);
+            border-radius: 50%;
+            background: white;
+            color: var(--eco-green);
+            font-size: 1.15rem;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .eco-carousel-button:hover {
+            border-color: var(--eco-green);
+            background: var(--eco-green);
+            color: white;
+        }
+
+        .eco-showcase-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 23px;
+            padding: 14px 16px;
+            border-radius: 13px;
+            background: var(--eco-green-pale);
+            color: #587361;
+            font-size: .8rem;
             line-height: 1.6;
         }
 
-        .eco-placeholder-note {
-            margin-top: 12px !important;
-            color: #829186 !important;
-            font-size: .75rem !important;
-            font-style: italic;
+        .eco-showcase-note span {
+            color: var(--eco-green);
+            font-weight: 900;
         }
 
         /* TECNOLOGIAS */
@@ -946,9 +1097,14 @@
             .eco-problem-grid {
                 gap: 40px;
             }
+
+            .eco-gallery-slide {
+                flex-basis: 84%;
+            }
         }
 
         @media (max-width: 760px) {
+
             .eco-container {
                 width: min(100% - 36px, 600px);
             }
@@ -1037,14 +1193,84 @@
                 min-height: auto;
             }
 
-            .eco-platform-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                margin-top: 32px;
+            .eco-platform-heading {
+                display: block;
+                margin-bottom: 25px;
             }
 
-            .eco-media-placeholder {
-                min-height: 285px;
+            .eco-platform-badge {
+                margin-top: 17px;
+            }
+
+            .eco-showcase {
+                padding: 20px 15px;
+                margin-top: 25px;
+                border-radius: 21px;
+            }
+
+            .eco-showcase-header {
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .eco-showcase-title h3 {
+                font-size: 1.08rem;
+            }
+
+            .eco-showcase-title p {
+                font-size: .76rem;
+            }
+
+            .eco-showcase-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 1.15rem;
+            }
+
+            .eco-profile-tabs {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+
+            .eco-profile-tab {
+                width: 100%;
+                text-align: left;
+            }
+
+            .eco-gallery-slide {
+                flex-basis: 88%;
+            }
+
+            .eco-carousel-track {
+                gap: 13px;
+            }
+
+            .eco-gallery-media--web {
+                min-height: 225px;
+                padding: 10px;
+            }
+
+            .eco-gallery-media--web img {
+                max-height: 230px;
+            }
+
+            .eco-gallery-media--mobile {
+                min-height: 410px;
+                padding: 12px;
+            }
+
+            .eco-gallery-media--mobile img {
+                height: 385px;
+            }
+
+            .eco-gallery-info {
+                padding: 16px;
+            }
+
+            .eco-carousel-hint {
+                max-width: 190px;
+                line-height: 1.5;
             }
 
             .eco-tech-grid {
@@ -1074,6 +1300,7 @@
         }
 
         @media (max-width: 420px) {
+
             .eco-container {
                 width: calc(100% - 30px);
             }
@@ -1104,6 +1331,22 @@
 
             .eco-section-title {
                 font-size: 2rem;
+            }
+
+            .eco-gallery-slide {
+                flex-basis: 94%;
+            }
+
+            .eco-gallery-media--mobile {
+                min-height: 380px;
+            }
+
+            .eco-gallery-media--mobile img {
+                height: 350px;
+            }
+
+            .eco-showcase {
+                padding: 16px 11px;
             }
         }
 
@@ -1236,9 +1479,7 @@
                             <span class="eco-flow-number">01</span>
                             <div>
                                 <strong>Solicitação registrada</strong>
-                                <small>
-                                    O condomínio informa os materiais disponíveis.
-                                </small>
+                                <small>O condomínio informa os materiais disponíveis.</small>
                             </div>
                         </div>
 
@@ -1246,9 +1487,7 @@
                             <span class="eco-flow-number">02</span>
                             <div>
                                 <strong>Coleta aceita</strong>
-                                <small>
-                                    O catador consulta e aceita a solicitação.
-                                </small>
+                                <small>O catador consulta e aceita a solicitação.</small>
                             </div>
                         </div>
 
@@ -1256,9 +1495,7 @@
                             <span class="eco-flow-number">03</span>
                             <div>
                                 <strong>Atendimento confirmado</strong>
-                                <small>
-                                    As duas partes confirmam a realização da coleta.
-                                </small>
+                                <small>As duas partes confirmam a realização da coleta.</small>
                             </div>
                         </div>
 
@@ -1410,49 +1647,37 @@
 
                     <article class="eco-step">
                         <div class="eco-step-number">01</div>
-
                         <h3>Criação da solicitação</h3>
-
                         <p>
-                            O representante informa os materiais
-                            disponíveis, as quantidades estimadas
-                            e as instruções para a retirada.
+                            O representante informa os materiais disponíveis,
+                            as quantidades estimadas e as instruções para a retirada.
                         </p>
                     </article>
 
                     <article class="eco-step">
                         <div class="eco-step-number">02</div>
-
                         <h3>Consulta e aceite</h3>
-
                         <p>
-                            O catador consulta as solicitações
-                            disponíveis e pode aceitar uma coleta
-                            para realizar o atendimento.
+                            O catador consulta as solicitações disponíveis e
+                            pode aceitar uma coleta para realizar o atendimento.
                         </p>
                     </article>
 
                     <article class="eco-step">
                         <div class="eco-step-number">03</div>
-
                         <h3>Confirmação do catador</h3>
-
                         <p>
-                            Após realizar a retirada dos materiais,
-                            o catador registra no sistema que
-                            a coleta foi efetuada.
+                            Após realizar a retirada dos materiais, o catador
+                            registra no sistema que a coleta foi efetuada.
                         </p>
                     </article>
 
                     <article class="eco-step">
                         <div class="eco-step-number">04</div>
-
                         <h3>Confirmação do condomínio</h3>
-
                         <p>
                             O representante também confirma a coleta.
-                            O atendimento é concluído após as
-                            duas confirmações.
+                            O atendimento é concluído após as duas confirmações.
                         </p>
                     </article>
 
@@ -1460,114 +1685,562 @@
             </div>
         </section>
 
-        <!-- APLICATIVO E SITE -->
+        <!-- PLATAFORMAS E CARROSSEIS -->
         <section class="eco-section eco-platforms" id="plataformas">
             <div class="eco-container">
 
-                <span class="eco-eyebrow">Conheça as plataformas</span>
+                <div class="eco-platform-heading">
+                    <div>
+                        <span class="eco-eyebrow">Conheça as plataformas</span>
 
-                <h2 class="eco-section-title">
-                    O EcoLink na palma da mão e na web.
-                </h2>
+                        <h2 class="eco-section-title">
+                            O EcoLink na web e na palma da mão.
+                        </h2>
 
-                <p class="eco-section-description">
-                    O projeto conta com uma aplicação móvel e uma
-                    interface web, integradas a uma API compartilhada
-                    e a um banco de dados. Cada plataforma atende às
-                    necessidades dos participantes do processo
-                    de coleta seletiva.
-                </p>
+                        <p>
+                            O projeto reúne uma plataforma web e um aplicativo
+                            móvel. Cada interface possui funcionalidades
+                            destinadas aos diferentes participantes do processo
+                            de coleta seletiva.
+                        </p>
+                    </div>
 
-                <div class="eco-platform-grid">
+                    <div class="eco-platform-badge">
+                        <span>♻</span>
+                        12 telas selecionadas
+                    </div>
+                </div>
 
-                    <!-- APLICATIVO -->
-                    <article class="eco-platform-card">
+                <!-- SISTEMA WEB -->
+                <div class="eco-showcase">
 
-                        <div class="eco-media-placeholder">
-                            <div class="eco-mobile-frame">
-                                <div class="eco-mobile-screen">
-                                    <span>📱</span>
+                    <div class="eco-showcase-header">
+                        <div class="eco-showcase-title">
+                            <div class="eco-showcase-icon">💻</div>
 
-                                    <strong>Aplicativo EcoLink</strong>
-
-                                    <small>
-                                        Espaço reservado para as capturas
-                                        reais do aplicativo.
-                                    </small>
-                                </div>
+                            <div>
+                                <h3>Sistema Web</h3>
+                                <p>Gestão e administração da plataforma</p>
                             </div>
                         </div>
 
-                        <div class="eco-platform-content">
-                            <span class="eco-platform-label">
-                                Aplicativo móvel
-                            </span>
+                        <span class="eco-count">3 capturas</span>
+                    </div>
 
-                            <h3>EcoLink Mobile</h3>
+                    <p class="eco-profile-description">
+                        A versão web apresenta recursos para administração
+                        de contas e acompanhamento das informações
+                        dos participantes do EcoLink.
+                    </p>
 
-                            <p>
-                                Permite que os participantes acessem
-                                as funcionalidades do sistema pelo
-                                celular, incluindo a consulta e o
-                                acompanhamento das solicitações de coleta.
-                            </p>
+                    <div class="eco-carousel" data-carousel>
 
-                            <p class="eco-placeholder-note">
-                                As telas reais do aplicativo serão
-                                inseridas nesta seção.
-                            </p>
-                        </div>
+                        <div class="eco-carousel-viewport">
+                            <div class="eco-carousel-track">
 
-                    </article>
+                                <article class="eco-gallery-slide">
+                                    <div class="eco-gallery-card">
+                                        <div class="eco-gallery-media eco-gallery-media--web">
+                                            <img
+                                                src="{{ asset('images/web-admin-painel.png') }}"
+                                                alt="Painel administrativo do EcoLink"
+                                                loading="lazy"
+                                            >
+                                        </div>
 
-                    <!-- SITE WEB -->
-                    <article class="eco-platform-card">
+                                        <div class="eco-gallery-info">
+                                            <span class="eco-gallery-number">01 / ADMINISTRAÇÃO</span>
+                                            <h4>Painel do administrador</h4>
+                                            <p>
+                                                Visão inicial da área administrativa
+                                                e acesso aos recursos de gerenciamento.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
 
-                        <div class="eco-media-placeholder">
-                            <div class="eco-web-frame">
+                                <article class="eco-gallery-slide">
+                                    <div class="eco-gallery-card">
+                                        <div class="eco-gallery-media eco-gallery-media--web">
+                                            <img
+                                                src="{{ asset('images/web-admin-contas.png') }}"
+                                                alt="Visão geral das contas do EcoLink"
+                                                loading="lazy"
+                                            >
+                                        </div>
 
-                                <div class="eco-browser-bar">
-                                    <span class="eco-browser-dot"></span>
-                                    <span class="eco-browser-dot"></span>
-                                    <span class="eco-browser-dot"></span>
-                                </div>
+                                        <div class="eco-gallery-info">
+                                            <span class="eco-gallery-number">02 / ADMINISTRAÇÃO</span>
+                                            <h4>Visão geral das contas</h4>
+                                            <p>
+                                                Indicadores de contas cadastradas,
+                                                pendentes, ativas e demais situações.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
 
-                                <div class="eco-web-screen">
-                                    <span>💻</span>
+                                <article class="eco-gallery-slide">
+                                    <div class="eco-gallery-card">
+                                        <div class="eco-gallery-media eco-gallery-media--web">
+                                            <img
+                                                src="{{ asset('images/web-admin-gerenciar-contas.png') }}"
+                                                alt="Gerenciamento dos participantes do EcoLink"
+                                                loading="lazy"
+                                            >
+                                        </div>
 
-                                    <strong>Sistema Web EcoLink</strong>
-
-                                    <small>
-                                        Espaço reservado para as capturas
-                                        reais da plataforma web.
-                                    </small>
-                                </div>
+                                        <div class="eco-gallery-info">
+                                            <span class="eco-gallery-number">03 / ADMINISTRAÇÃO</span>
+                                            <h4>Gerenciamento de participantes</h4>
+                                            <p>
+                                                Consulta e gerenciamento das contas
+                                                dos usuários e seus respectivos perfis.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
 
                             </div>
                         </div>
 
-                        <div class="eco-platform-content">
-                            <span class="eco-platform-label">
-                                Plataforma web
+                        <div class="eco-carousel-controls">
+                            <span class="eco-carousel-hint">
+                                Deslize para o lado para conhecer as próximas telas.
                             </span>
 
-                            <h3>EcoLink Web</h3>
+                            <div class="eco-carousel-buttons">
+                                <button class="eco-carousel-button" type="button" data-carousel-prev aria-label="Imagem anterior">
+                                    ←
+                                </button>
 
-                            <p>
-                                Oferece uma interface para o representante
-                                do condomínio registrar solicitações
-                                e acompanhar o andamento dos atendimentos.
-                            </p>
-
-                            <p class="eco-placeholder-note">
-                                As telas reais do sistema web serão
-                                inseridas nesta seção.
-                            </p>
+                                <button class="eco-carousel-button" type="button" data-carousel-next aria-label="Próxima imagem">
+                                    →
+                                </button>
+                            </div>
                         </div>
 
-                    </article>
+                    </div>
+
+                    <div class="eco-showcase-note">
+                        <span>i</span>
+                        <div>
+                            As capturas demonstram as ferramentas disponíveis
+                            para administração e gerenciamento dos participantes
+                            na plataforma web.
+                        </div>
+                    </div>
 
                 </div>
+
+                <!-- APLICATIVO MOBILE -->
+                <div class="eco-showcase eco-app-showcase">
+
+                    <div class="eco-showcase-header">
+                        <div class="eco-showcase-title">
+                            <div class="eco-showcase-icon">📱</div>
+
+                            <div>
+                                <h3>Aplicativo EcoLink</h3>
+                                <p>Funcionalidades organizadas por perfil</p>
+                            </div>
+                        </div>
+
+                        <span class="eco-count">9 capturas</span>
+                    </div>
+
+                    <p class="eco-profile-description">
+                        O aplicativo reúne funcionalidades para os representantes
+                        de condomínios, catadores e responsáveis pelos pontos
+                        de reciclagem. Escolha um perfil para visualizar
+                        suas principais telas.
+                    </p>
+
+                    <!-- ABAS DOS PERFIS -->
+                    <div class="eco-profile-tabs" role="tablist" aria-label="Perfis do aplicativo">
+
+                        <button
+                            class="eco-profile-tab"
+                            type="button"
+                            role="tab"
+                            data-profile-tab="catador"
+                            aria-selected="true"
+                        >
+                            ♻ Catador
+                        </button>
+
+                        <button
+                            class="eco-profile-tab"
+                            type="button"
+                            role="tab"
+                            data-profile-tab="representante"
+                            aria-selected="false"
+                        >
+                            🏢 Representante
+                        </button>
+
+                        <button
+                            class="eco-profile-tab"
+                            type="button"
+                            role="tab"
+                            data-profile-tab="ponto"
+                            aria-selected="false"
+                        >
+                            📍 Responsável por ponto
+                        </button>
+
+                    </div>
+
+                    <!-- PERFIL CATADOR -->
+                    <div
+                        class="eco-profile-panel"
+                        data-profile-panel="catador"
+                        role="tabpanel"
+                    >
+
+                        <p class="eco-profile-description">
+                            O catador pode consultar oportunidades de coleta,
+                            acompanhar os atendimentos que aceitou, confirmar
+                            as retiradas e consultar pontos de reciclagem.
+                        </p>
+
+                        <div class="eco-carousel" data-carousel>
+
+                            <div class="eco-carousel-viewport">
+                                <div class="eco-carousel-track">
+
+                                    <article class="eco-gallery-slide">
+                                        <div class="eco-gallery-card">
+
+                                            <div class="eco-gallery-media eco-gallery-media--mobile">
+                                                <img
+                                                    src="{{ asset('images/app-catador-coletas-disponiveis.jpeg') }}"
+                                                    alt="Lista de coletas disponíveis para o catador"
+                                                    loading="lazy"
+                                                >
+                                            </div>
+
+                                            <div class="eco-gallery-info">
+                                                <span class="eco-gallery-number">01 / CATADOR</span>
+                                                <h4>Coletas disponíveis</h4>
+                                                <p>
+                                                    Consulta das oportunidades de coleta
+                                                    disponibilizadas pelos condomínios.
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                    <article class="eco-gallery-slide">
+                                        <div class="eco-gallery-card">
+
+                                            <div class="eco-gallery-media eco-gallery-media--mobile">
+                                                <img
+                                                    src="{{ asset('images/app-catador-minhas-coletas-1.jpeg') }}"
+                                                    alt="Coletas aceitas pelo catador"
+                                                    loading="lazy"
+                                                >
+                                            </div>
+
+                                            <div class="eco-gallery-info">
+                                                <span class="eco-gallery-number">02 / CATADOR</span>
+                                                <h4>Minhas coletas</h4>
+                                                <p>
+                                                    Acompanhamento das solicitações
+                                                    aceitas e dos atendimentos em andamento.
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                    <article class="eco-gallery-slide">
+                                        <div class="eco-gallery-card">
+
+                                            <div class="eco-gallery-media eco-gallery-media--mobile">
+                                                <img
+                                                    src="{{ asset('images/app-catador-minhas-coletas-2.jpeg') }}"
+                                                    alt="Detalhes e confirmação da coleta"
+                                                    loading="lazy"
+                                                >
+                                            </div>
+
+                                            <div class="eco-gallery-info">
+                                                <span class="eco-gallery-number">03 / CATADOR</span>
+                                                <h4>Confirmação da retirada</h4>
+                                                <p>
+                                                    Consulta aos detalhes do atendimento
+                                                    e registro da retirada realizada.
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                    <article class="eco-gallery-slide">
+                                        <div class="eco-gallery-card">
+
+                                            <div class="eco-gallery-media eco-gallery-media--mobile">
+                                                <img
+                                                    src="{{ asset('images/app-catador-pontos-reciclagem.jpeg') }}"
+                                                    alt="Consulta aos pontos de reciclagem"
+                                                    loading="lazy"
+                                                >
+                                            </div>
+
+                                            <div class="eco-gallery-info">
+                                                <span class="eco-gallery-number">04 / CATADOR</span>
+                                                <h4>Pontos de reciclagem</h4>
+                                                <p>
+                                                    Consulta de locais, materiais aceitos
+                                                    e informações disponíveis sobre
+                                                    os pontos de reciclagem.
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                </div>
+                            </div>
+
+                            <div class="eco-carousel-controls">
+                                <span class="eco-carousel-hint">
+                                    Deslize para conhecer as funcionalidades.
+                                </span>
+
+                                <div class="eco-carousel-buttons">
+                                    <button class="eco-carousel-button" type="button" data-carousel-prev aria-label="Imagem anterior">
+                                        ←
+                                    </button>
+
+                                    <button class="eco-carousel-button" type="button" data-carousel-next aria-label="Próxima imagem">
+                                        →
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- PERFIL REPRESENTANTE -->
+                    <div
+                        class="eco-profile-panel"
+                        data-profile-panel="representante"
+                        role="tabpanel"
+                        hidden
+                    >
+
+                        <p class="eco-profile-description">
+                            O representante registra os materiais disponíveis,
+                            informa as condições para a retirada e acompanha
+                            o andamento das solicitações do condomínio.
+                        </p>
+
+                        <div class="eco-carousel" data-carousel>
+
+                            <div class="eco-carousel-viewport">
+                                <div class="eco-carousel-track">
+
+                                    <article class="eco-gallery-slide">
+                                        <div class="eco-gallery-card">
+
+                                            <div class="eco-gallery-media eco-gallery-media--mobile">
+                                                <img
+                                                    src="{{ asset('images/app-representante-solicitacao-1.jpeg') }}"
+                                                    alt="Primeira etapa de criação de uma solicitação"
+                                                    loading="lazy"
+                                                >
+                                            </div>
+
+                                            <div class="eco-gallery-info">
+                                                <span class="eco-gallery-number">01 / REPRESENTANTE</span>
+                                                <h4>Seleção dos materiais</h4>
+                                                <p>
+                                                    Informações iniciais sobre
+                                                    os materiais disponíveis
+                                                    para a coleta.
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                    <article class="eco-gallery-slide">
+                                        <div class="eco-gallery-card">
+
+                                            <div class="eco-gallery-media eco-gallery-media--mobile">
+                                                <img
+                                                    src="{{ asset('images/app-representante-solicitacao-2.jpeg') }}"
+                                                    alt="Continuação do formulário de solicitação"
+                                                    loading="lazy"
+                                                >
+                                            </div>
+
+                                            <div class="eco-gallery-info">
+                                                <span class="eco-gallery-number">02 / REPRESENTANTE</span>
+                                                <h4>Detalhes da solicitação</h4>
+                                                <p>
+                                                    Preenchimento de quantidades,
+                                                    instruções e demais informações
+                                                    para a retirada.
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                    <article class="eco-gallery-slide">
+                                        <div class="eco-gallery-card">
+
+                                            <div class="eco-gallery-media eco-gallery-media--mobile">
+                                                <img
+                                                    src="{{ asset('images/app-representante-solicitacoes.jpeg') }}"
+                                                    alt="Acompanhamento das solicitações do condomínio"
+                                                    loading="lazy"
+                                                >
+                                            </div>
+
+                                            <div class="eco-gallery-info">
+                                                <span class="eco-gallery-number">03 / REPRESENTANTE</span>
+                                                <h4>Minhas solicitações</h4>
+                                                <p>
+                                                    Acompanhamento dos atendimentos
+                                                    registrados pelo condomínio
+                                                    e seus respectivos estados.
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                </div>
+                            </div>
+
+                            <div class="eco-carousel-controls">
+                                <span class="eco-carousel-hint">
+                                    Deslize para conhecer as funcionalidades.
+                                </span>
+
+                                <div class="eco-carousel-buttons">
+                                    <button class="eco-carousel-button" type="button" data-carousel-prev aria-label="Imagem anterior">
+                                        ←
+                                    </button>
+
+                                    <button class="eco-carousel-button" type="button" data-carousel-next aria-label="Próxima imagem">
+                                        →
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- PERFIL RESPONSÁVEL POR PONTO -->
+                    <div
+                        class="eco-profile-panel"
+                        data-profile-panel="ponto"
+                        role="tabpanel"
+                        hidden
+                    >
+
+                        <p class="eco-profile-description">
+                            O responsável pelo ponto de reciclagem pode
+                            cadastrar suas informações e manter os dados
+                            do local atualizados para consulta pelos demais
+                            participantes.
+                        </p>
+
+                        <div class="eco-carousel">
+
+                            <div class="eco-carousel-viewport">
+                                <div class="eco-carousel-track">
+
+                                    <article class="eco-gallery-slide">
+                                        <div class="eco-gallery-card">
+
+                                            <div class="eco-gallery-media eco-gallery-media--mobile">
+                                                <img
+                                                    src="{{ asset('images/app-ponto-cadastro-1.jpeg') }}"
+                                                    alt="Início do cadastro do responsável pelo ponto de reciclagem"
+                                                    loading="lazy"
+                                                >
+                                            </div>
+
+                                            <div class="eco-gallery-info">
+                                                <span class="eco-gallery-number">01 / PONTO DE RECICLAGEM</span>
+                                                <h4>Cadastro do responsável</h4>
+                                                <p>
+                                                    Início do processo de cadastro
+                                                    e identificação do perfil
+                                                    responsável pelo ponto.
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                    <article class="eco-gallery-slide">
+                                        <div class="eco-gallery-card">
+
+                                            <div class="eco-gallery-media eco-gallery-media--mobile">
+                                                <img
+                                                    src="{{ asset('images/app-ponto-cadastro-2.jpeg') }}"
+                                                    alt="Formulário de cadastro de ponto de reciclagem"
+                                                    loading="lazy"
+                                                >
+                                            </div>
+
+                                            <div class="eco-gallery-info">
+                                                <span class="eco-gallery-number">02 / PONTO DE RECICLAGEM</span>
+                                                <h4>Informações do ponto</h4>
+                                                <p>
+                                                    Preenchimento dos dados
+                                                    de identificação, localização
+                                                    e informações do estabelecimento.
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                </div>
+                            </div>
+
+                            <div class="eco-carousel-controls">
+                                <span class="eco-carousel-hint">
+                                    Deslize para conferir as etapas do cadastro.
+                                </span>
+
+                                <div class="eco-carousel-buttons">
+                                    <button class="eco-carousel-button" type="button" data-carousel-prev aria-label="Imagem anterior">
+                                        ←
+                                    </button>
+
+                                    <button class="eco-carousel-button" type="button" data-carousel-next aria-label="Próxima imagem">
+                                        →
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="eco-showcase-note">
+                        <span>i</span>
+                        <div>
+                            As telas demonstram as funcionalidades dos diferentes
+                            perfis do aplicativo. Selecione uma categoria e deslize
+                            para visualizar as capturas correspondentes.
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </section>
 
@@ -1584,62 +2257,48 @@
                 </h2>
 
                 <p class="eco-section-description">
-                    A arquitetura do EcoLink reúne diferentes
-                    componentes integrados para disponibilizar
-                    as funcionalidades do sistema.
+                    A arquitetura do EcoLink reúne diferentes componentes
+                    integrados para disponibilizar as funcionalidades do sistema.
                 </p>
 
                 <div class="eco-tech-grid">
 
                     <article class="eco-tech-card">
                         <div class="eco-tech-icon">🌐</div>
-
                         <h3>Aplicação web</h3>
-
                         <strong>Next.js + TypeScript</strong>
-
                         <p>
-                            Interface web para acesso às
-                            funcionalidades do sistema.
+                            Interface web para acesso às funcionalidades
+                            do sistema.
                         </p>
                     </article>
 
                     <article class="eco-tech-card">
                         <div class="eco-tech-icon">📱</div>
-
                         <h3>Aplicativo móvel</h3>
-
                         <strong>React Native + TypeScript</strong>
-
                         <p>
-                            Aplicação desenvolvida para
-                            dispositivos móveis.
+                            Aplicação desenvolvida para dispositivos móveis.
                         </p>
                     </article>
 
                     <article class="eco-tech-card">
                         <div class="eco-tech-icon">🔗</div>
-
                         <h3>Integração</h3>
-
                         <strong>API compartilhada</strong>
-
                         <p>
-                            Centraliza as operações e integra
-                            as interfaces do sistema.
+                            Centraliza as operações e integra as interfaces
+                            do sistema.
                         </p>
                     </article>
 
                     <article class="eco-tech-card">
                         <div class="eco-tech-icon">🗄️</div>
-
                         <h3>Banco de dados</h3>
-
                         <strong>MySQL</strong>
-
                         <p>
-                            Armazena as informações utilizadas
-                            pelos componentes do EcoLink.
+                            Armazena as informações utilizadas pelos
+                            componentes do EcoLink.
                         </p>
                     </article>
 
@@ -1668,9 +2327,8 @@
                         class="eco-section-description"
                         style="margin-left:auto; margin-right:auto;"
                     >
-                        O EcoLink é resultado de um trabalho de
-                        pesquisa, planejamento e desenvolvimento
-                        realizado em equipe.
+                        O EcoLink é resultado de um trabalho de pesquisa,
+                        planejamento e desenvolvimento realizado em equipe.
                     </p>
 
                 </div>
@@ -1766,9 +2424,9 @@
                 </h2>
 
                 <p>
-                    Acreditamos que a tecnologia pode aproximar
-                    pessoas, organizar processos e apoiar iniciativas
-                    voltadas à coleta seletiva.
+                    Acreditamos que a tecnologia pode aproximar pessoas,
+                    organizar processos e apoiar iniciativas voltadas
+                    à coleta seletiva.
                 </p>
 
                 <a href="#top" class="eco-button eco-button-primary">
@@ -1776,10 +2434,10 @@
                 </a>
 
                 <p class="eco-disclaimer">
-                    Projeto desenvolvido e verificado funcionalmente
-                    com contas de teste. Avaliações com usuários em
-                    situações reais e mensuração de impacto
-                    socioambiental são etapas futuras.
+                    Projeto desenvolvido e verificado funcionalmente com
+                    contas de teste. Avaliações com usuários em situações
+                    reais e mensuração de impacto socioambiental são
+                    etapas futuras.
                 </p>
 
             </div>
@@ -1807,8 +2465,11 @@
         </div>
     </footer>
 
-    <!-- MENU MOBILE -->
+    <!-- INTERAÇÕES -->
     <script>
+
+        // MENU MOBILE
+
         const menuButton = document.getElementById('eco-menu-button');
         const mobileMenu = document.getElementById('eco-mobile-menu');
 
@@ -1827,7 +2488,6 @@
             );
 
             mobileMenu.hidden = isExpanded;
-
             menuButton.textContent = isExpanded ? '☰' : '✕';
         });
 
@@ -1841,6 +2501,90 @@
                 menuButton.textContent = '☰';
             });
         });
+
+
+        // NAVEGAÇÃO DOS CARROSSÉIS
+
+        document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
+
+            const viewport = carousel.querySelector('.eco-carousel-viewport');
+
+            const previousButton = carousel.querySelector('[data-carousel-prev]');
+            const nextButton = carousel.querySelector('[data-carousel-next]');
+
+            if (!viewport) {
+                return;
+            }
+
+            function getScrollDistance() {
+                return Math.max(viewport.clientWidth * 0.82, 240);
+            }
+
+            if (previousButton) {
+                previousButton.addEventListener('click', function () {
+                    viewport.scrollBy({
+                        left: -getScrollDistance(),
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', function () {
+                    viewport.scrollBy({
+                        left: getScrollDistance(),
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+        });
+
+
+        // ALTERNÂNCIA ENTRE OS PERFIS DO APLICATIVO
+
+        const profileTabs = document.querySelectorAll('[data-profile-tab]');
+        const profilePanels = document.querySelectorAll('[data-profile-panel]');
+
+        profileTabs.forEach(function (tab) {
+
+            tab.addEventListener('click', function () {
+
+                const selectedProfile = tab.dataset.profileTab;
+
+                profileTabs.forEach(function (button) {
+                    const isActive = button === tab;
+
+                    button.setAttribute(
+                        'aria-selected',
+                        String(isActive)
+                    );
+                });
+
+                profilePanels.forEach(function (panel) {
+
+                    const isSelected =
+                        panel.dataset.profilePanel === selectedProfile;
+
+                    panel.hidden = !isSelected;
+
+                    if (isSelected) {
+                        const viewport = panel.querySelector('.eco-carousel-viewport');
+
+                        if (viewport) {
+                            viewport.scrollTo({
+                                left: 0,
+                                behavior: 'instant'
+                            });
+                        }
+                    }
+
+                });
+
+            });
+
+        });
+
     </script>
 
 </body>
